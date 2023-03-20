@@ -54,6 +54,6 @@ class User extends Authenticatable
 
     public function property()
     {
-        $this->hasMany('App\Property');
+        return $this->hasMany('App\Property');
     }
 }

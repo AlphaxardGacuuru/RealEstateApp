@@ -20,18 +20,18 @@ class PropertyController extends Controller
 
         foreach ($getProperty as $item) {
             array_push($property, [
-				"id" => $item->id,
-				"name" => $item->name,
+                "id" => $item->id,
+                "name" => $item->name,
                 "images" => "/storage/" . $item->images,
                 "bedroom" => $item->bedroom,
                 "price" => $item->price,
-				"location" => $item->location,
-				"description" => $item->description,
-				"user_id" => $item->user_id
+                "location" => $item->location,
+                "description" => $item->description,
+                "user_id" => $item->user_id,
             ]);
         }
 
-		return response($property, 200);
+        return response($property, 200);
     }
 
     /**
@@ -51,9 +51,25 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function show(Property $property)
+    public function show($id)
     {
-        //
+        $getProperty = Property::find($id);
+
+        $property = [];
+
+        array_push($property, [
+            "id" => $getProperty->id,
+            "name" => $getProperty->name,
+            "images" => "/storage/" . $getProperty->images,
+            "bedroom" => $getProperty->bedroom,
+            "price" => $getProperty->price,
+            "location" => $getProperty->location,
+            "description" => $getProperty->description,
+            "user_id" => $getProperty->user_id,
+            "phone" => $getProperty->user->phone,
+        ]);
+
+        return response($property, 200);
     }
 
     /**

@@ -1,6 +1,38 @@
-import React from 'react'
+import React from "react"
 
 const Register = () => {
+	axios.get("/sanctum/csrf-cookie").then(() => {
+		axios
+			.post(`http:localhost:8000/api/register`, {
+				id: id,
+				name: name,
+				email: email,
+				avatar: avatar,
+				username: username,
+				phone: phone,
+			})
+			.then((res) => {
+				props.setMessages(["Account Updated"])
+				// Update Auth
+				axios
+					.get(`${props.url}/api/home`)
+					.then((res) => props.setAuth(res.data))
+				setTimeout(() => history.push("/"), 1000)
+			})
+			.catch((err) => {
+				const resErrors = err.response.data.errors
+
+				var resError
+				var newError = []
+				for (resError in resErrors) {
+					newError.push(resErrors[resError])
+				}
+				// Get other errors
+				newError.push(err.response.data.message)
+				props.setErrors(newError)
+			})
+	})
+
 	return (
 		<div className="container">
 			<div className="row justify-content-center">
@@ -9,55 +41,111 @@ const Register = () => {
 						<div className="card-header">Register</div>
 
 						<div className="card-body">
-							<form method="POST" action="register">
-
+							<form
+								method="POST"
+								action="register">
 								<div className="form-group row">
-									<label for="name" className="col-md-4 col-form-label text-md-right">Name</label>
+									<label
+										for="name"
+										className="col-md-4 col-form-label text-md-right">
+										Name
+									</label>
 
 									<div className="col-md-6">
-										<input id="name" type="text" className="form-control @error('name') is-invalid @enderror" name="name" value="name" required autoComplete="name" autoFocus />
+										<input
+											id="name"
+											type="text"
+											className="form-control @error('name') is-invalid @enderror"
+											name="name"
+											value="name"
+											required
+											autoComplete="name"
+											autoFocus
+										/>
 
-										<span className="invalid-feedback" role="alert">
+										<span
+											className="invalid-feedback"
+											role="alert">
 											<strong>message</strong>
 										</span>
 									</div>
 								</div>
 
 								<div className="form-group row">
-									<label for="email" className="col-md-4 col-form-label text-md-right">E-Mail Address</label>
+									<label
+										for="email"
+										className="col-md-4 col-form-label text-md-right">
+										E-Mail Address
+									</label>
 
 									<div className="col-md-6">
-										<input id="email" type="email" className="form-control @error('email') is-invalid @enderror" name="email" value="email" required autoComplete="email" />
+										<input
+											id="email"
+											type="email"
+											className="form-control @error('email') is-invalid @enderror"
+											name="email"
+											value="email"
+											required
+											autoComplete="email"
+										/>
 
-										<span className="invalid-feedback" role="alert">
+										<span
+											className="invalid-feedback"
+											role="alert">
 											<strong>message</strong>
 										</span>
 									</div>
 								</div>
 
 								<div className="form-group row">
-									<label for="password" className="col-md-4 col-form-label text-md-right">Password</label>
+									<label
+										for="password"
+										className="col-md-4 col-form-label text-md-right">
+										Password
+									</label>
 
 									<div className="col-md-6">
-										<input id="password" type="password" className="form-control @error('password') is-invalid @enderror" name="password" required autoComplete="new-password" />
+										<input
+											id="password"
+											type="password"
+											className="form-control @error('password') is-invalid @enderror"
+											name="password"
+											required
+											autoComplete="new-password"
+										/>
 
-										<span className="invalid-feedback" role="alert">
+										<span
+											className="invalid-feedback"
+											role="alert">
 											<strong>message</strong>
 										</span>
 									</div>
 								</div>
 
 								<div className="form-group row">
-									<label for="password-confirm" className="col-md-4 col-form-label text-md-right">Confirm Password</label>
+									<label
+										for="password-confirm"
+										className="col-md-4 col-form-label text-md-right">
+										Confirm Password
+									</label>
 
 									<div className="col-md-6">
-										<input id="password-confirm" type="password" className="form-control" name="password_confirmation" required autoComplete="new-password" />
+										<input
+											id="password-confirm"
+											type="password"
+											className="form-control"
+											name="password_confirmation"
+											required
+											autoComplete="new-password"
+										/>
 									</div>
 								</div>
 
 								<div className="form-group row mb-0">
 									<div className="col-md-6 offset-md-4">
-										<button type="submit" className="btn btn-primary">
+										<button
+											type="submit"
+											className="btn btn-primary">
 											Register
 										</button>
 									</div>

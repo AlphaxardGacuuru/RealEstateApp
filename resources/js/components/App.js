@@ -1,30 +1,49 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import axios from 'axios';
-import { HashRouter as Router, Route } from 'react-router-dom'
+import React, { useState } from "react"
+import ReactDOM from "react-dom"
+import { HashRouter as Router, Route } from "react-router-dom"
 
-import TopNav from './TopNav';
+import TopNav from "./TopNav"
 
-import Login from '../pages/auth/login';
-import Register from '../pages/auth/Register';
+import Login from "../pages/auth/login"
+import Register from "../pages/auth/Register"
 
-import Index from '../pages/Index';
+import Index from "../pages/Index"
+import PropertyShow from "../pages/PropertyShow"
 
-function App() {
+const App = () => {
+	const [auth, setAuth] = useState({ id: 0, name: "Guest" })
+
 	return (
 		<Router>
-			<TopNav />
-			<br/>
-			
-			<Route path="/register" exact render={(props) => (<Register />)} />
-			<Route path="/login" exact render={(props) => (<Login />)} />
-			<Route path="/" exact render={(props) => (<Index />)} />
+			<TopNav {...{ auth }} />
+			<br />
+
+			<Route
+				path="/register"
+				exact
+				render={(props) => <Register />}
+			/>
+			<Route
+				path="/login"
+				exact
+				render={(props) => <Login />}
+			/>
+			<Route
+				path="/"
+				exact
+				render={(props) => <Index {...{ auth }} />}
+			/>
+			<Route
+				path="/property/:id"
+				exact
+				render={(props) => <PropertyShow {...{ auth }} />}
+			/>
 		</Router>
-	);
+	)
 }
 
-export default App;
+export default App
 
-if (document.getElementById('app')) {
-	ReactDOM.render(<App />, document.getElementById('app'));
+if (document.getElementById("app")) {
+	ReactDOM.render(<App />, document.getElementById("app"))
 }
