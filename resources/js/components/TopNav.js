@@ -1,46 +1,45 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const TopNav = () => {
 	return (
-		<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-			<div class="container">
-				<a class="navbar-brand" href="{{ url('/') }}">
+		<nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+			<div className="container">
+				<Link className="navbar-brand" to="/">
 					Real Estate App
-				</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-					<span class="navbar-toggler-icon"></span>
+				</Link>
+				<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+					<span className="navbar-toggler-icon"></span>
 				</button>
 
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<div className="collapse navbar-collapse" id="navbarSupportedContent">
 					{/* <!-- Left Side Of Navbar --> */}
-					<ul class="navbar-nav mr-auto">
+					<ul className="navbar-nav mr-auto">
 
 					</ul>
 
 					{/* <!-- Right Side Of Navbar --> */}
-					<ul class="navbar-nav ml-auto">
+					<ul className="navbar-nav ml-auto">
 						{/* <!-- Authentication Links --> */}
 						{/* @guest */}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('login') }}">Login</a>
+						<li className="nav-item">
+							<Link className="nav-link" to="/login">Login</Link>
 						</li>
 						{/* @if (Route::has('register')) */}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ route('register') }}">Register</a>
+						<li className="nav-item">
+							<Link className="nav-link" to="/register">Register</Link>
 						</li>
 						{/* @endif */}
 						{/* @else */}
-						<li class="nav-item dropdown">
-							<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+						<li className="nav-item dropdown">
+							<Link id="navbarDropdown" className="nav-link dropdown-toggle" to="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Name
-							</a>
+							</Link>
 
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-								<a class="dropdown-item" href="{{ route('logout') }}"
-									onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+							<div className="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+								<Link className="dropdown-item" to="{{ route('logout') }}">
 									Logout
-								</a>
+								</Link>
 
 							</div>
 						</li>

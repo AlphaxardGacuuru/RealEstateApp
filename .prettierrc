@@ -1,0 +1,9 @@
+{
+	"semi": false,
+	"useTabs": true,
+	"pets.settings.prettierEnabled": true,
+	"bracketSpacing": true,
+	"singleAttributePerLine": true,
+	"htmlWhitespaceSensitivity": "ignore",
+	"bracketSameLine": true
+}

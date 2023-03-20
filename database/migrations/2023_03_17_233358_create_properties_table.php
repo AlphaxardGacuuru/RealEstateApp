@@ -15,6 +15,16 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('images');
+            $table->string('bedroom');
+            $table->string('price');
+            $table->string('location');
+            $table->string('description');
+            $table->foreignId('user_id')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -14,7 +14,24 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        $getProperty = Property::all();
+
+        $property = [];
+
+        foreach ($getProperty as $item) {
+            array_push($property, [
+				"id" => $item->id,
+				"name" => $item->name,
+                "images" => "/storage/" . $item->images,
+                "bedroom" => $item->bedroom,
+                "price" => $item->price,
+				"location" => $item->location,
+				"description" => $item->description,
+				"user_id" => $item->user_id
+            ]);
+        }
+
+		return response($property, 200);
     }
 
     /**
