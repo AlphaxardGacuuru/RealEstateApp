@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PropertyController extends Controller
 {
@@ -66,6 +67,7 @@ class PropertyController extends Controller
             "location" => $getProperty->location,
             "description" => $getProperty->description,
             "user_id" => $getProperty->user_id,
+            "userName" => $getProperty->user->name,
             "phone" => $getProperty->user->phone,
         ]);
 
@@ -79,9 +81,40 @@ class PropertyController extends Controller
      * @param  \App\Property  $property
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Property $property)
+    public function update(Request $request, $id)
     {
-        //
+        $property = Property::find($id);
+
+        if ($request->filled("name")) {
+            $property->name = $request->input("name");
+        }
+
+        if ($request->filled('images')) {
+            // Delete previous image
+            Storage::delete('public/' . $property->images);
+
+            $property->images = $request->input("images");
+        }
+
+        if ($request->filled("bedroom")) {
+            $property->bedroom = $request->input("bedroom");
+        }
+
+        if ($request->filled("price")) {
+            $property->price = $request->input("price");
+        }
+
+        if ($request->filled("location")) {
+            $property->location = $request->input("location");
+        }
+
+        if ($request->filled("description")) {
+            $property->description = $request->input("description");
+        }
+
+        $property->save();
+
+        return response("Property updated", 200);
     }
 
     /**
@@ -93,5 +126,15 @@ class PropertyController extends Controller
     public function destroy(Property $property)
     {
         //
+    }
+
+    public function propertyImagesEdit(Request $request)
+    {
+        $images = $request->file('filepond-property-images')
+            ->store('public/property-images');
+
+        $images = substr($images, 7);
+
+        return response($images, 200);
     }
 }

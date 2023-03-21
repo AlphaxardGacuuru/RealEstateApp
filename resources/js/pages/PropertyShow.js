@@ -32,6 +32,7 @@ const PropertyShow = (props) => {
 					<h6 className="card-text text-secondary">
 						Description: {property.description}
 					</h6>
+					<h6 className="card-text">Owner: {property.name}</h6>
 					<h6 className="card-text">Contact: {property.phone}</h6>
 					{props.auth.id == id && (
 						<Link

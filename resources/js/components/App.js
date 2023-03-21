@@ -9,13 +9,16 @@ import Register from "../pages/auth/Register"
 
 import Index from "../pages/Index"
 import PropertyShow from "../pages/PropertyShow"
+import PropertyEdit from "../pages/PropertyEdit"
 
 const App = () => {
-	const [auth, setAuth] = useState({ id: 0, name: "Guest" })
+	const url = "http://localhost:8000"
+
+	const [auth, setAuth] = useState({ id: 1, name: "Guest" })
 
 	return (
 		<Router>
-			<TopNav {...{ auth }} />
+			<TopNav {...{ url, auth }} />
 			<br />
 
 			<Route
@@ -31,12 +34,17 @@ const App = () => {
 			<Route
 				path="/"
 				exact
-				render={(props) => <Index {...{ auth }} />}
+				render={(props) => <Index {...{ url, auth }} />}
 			/>
 			<Route
 				path="/property/:id"
 				exact
-				render={(props) => <PropertyShow {...{ auth }} />}
+				render={(props) => <PropertyShow {...{ url, auth }} />}
+			/>
+			<Route
+				path="/property/:id/edit"
+				exact
+				render={(props) => <PropertyEdit {...{ url, auth }} />}
 			/>
 		</Router>
 	)
