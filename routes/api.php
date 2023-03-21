@@ -23,4 +23,4 @@ Route::apiResources([
     "property" => "PropertyController",
 ]);
 
-Route::post('propertyImages/{id}', 'PropertyController@propertyImagesEdit');
+Route::post('propertyImages', 'PropertyController@propertyImages');

@@ -1,6 +1,6 @@
 import axios from "axios"
-import React, { useEffect, useState } from "react"
-import { Link, useParams } from "react-router-dom"
+import React, { useState } from "react"
+import { Link, useHistory } from "react-router-dom"
 
 // Import React FilePond
 import { FilePond, registerPlugin } from "react-filepond"
@@ -26,24 +26,14 @@ registerPlugin(
 	FilePondPluginImageTransform
 )
 
-const PropertyEdit = (props) => {
-	const [property, setProperty] = useState({})
+const PropertyCreate = (props) => {
+	const history = useHistory()
 	const [name, setName] = useState("")
 	const [images, setImages] = useState("")
 	const [bedroom, setBedroom] = useState("")
 	const [price, setPrice] = useState("")
 	const [location, setLocation] = useState("")
 	const [description, setDescription] = useState("")
-
-	let { id } = useParams()
-
-	useEffect(() => {
-		// Fetch Property
-		axios
-			.get(`http://localhost:8000/api/property/${id}`)
-			.then((res) => setProperty(res.data[0]))
-			.catch(() => console.log(["Failed to fetch bought videos"]))
-	}, [])
 
 	// Get csrf token
 	const token = document.head.querySelector('meta[name="csrf-token"]')
@@ -55,27 +45,21 @@ const PropertyEdit = (props) => {
 		e.preventDefault()
 
 		// Add form data to FormData object
-		name && formData.append("name", name)
-		images && formData.append("images", images)
-		bedroom && formData.append("bedroom", bedroom)
-		price && formData.append("price", price)
-		location && formData.append("location", location)
-		description && formData.append("description", description)
-		formData.append("_method", "put")
+		formData.append("name", name)
+		formData.append("images", images)
+		formData.append("bedroom", bedroom)
+		formData.append("price", price)
+		formData.append("location", location)
+		formData.append("description", description)
 
 		// Send data to UsersController
 		// Get csrf cookie from Laravel inorder to send a POST request
 		axios.get("sanctum/csrf-cookie").then(() => {
 			axios
-				.post(`${props.url}/api/property/${id}`, formData)
+				.post(`${props.url}/api/property`, formData)
 				.then((res) => {
 					// props.setMessages([res.data])
-					// Update Property
-					axios
-						.get(`${props.url}/api/property/${id}`)
-						.then((res) => setProperty(res.data[0]))
-
-					window.location.reload()
+					history.push("/")
 				})
 				.catch((err) => console.log(err))
 		})
@@ -85,11 +69,6 @@ const PropertyEdit = (props) => {
 		<center>
 			<div className="card m-2 w-75">
 				<div>
-					<img
-						className="card-img-top"
-						src={property.images}
-						alt="Card image"
-					/>
 					<FilePond
 						name="filepond-property-images"
 						labelIdle='Drag & Drop your Image or <span class="filepond--label-action text-dark"> Update image </span>'
@@ -101,15 +80,7 @@ const PropertyEdit = (props) => {
 							process: {
 								url: `/propertyImages`,
 								headers: { "X-CSRF-TOKEN": token.content },
-								onload: (res) => {
-									setImages(res)
-									// Update Property
-									axios
-										.get(
-											`http://localhost:8000/api/property/${id}`
-										)
-										.then((res) => setProperty(res.data[0]))
-								},
+								onload: (res) => setImages(res),
 								onerror: (err) => console.log(err.response),
 							},
 						}}
@@ -126,7 +97,8 @@ const PropertyEdit = (props) => {
 							<input
 								type="text"
 								className="form-control"
-								placeholder={property.name}
+								placeholder="Name"
+								required={true}
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</h6>
@@ -139,7 +111,8 @@ const PropertyEdit = (props) => {
 							<input
 								type="number"
 								className="form-control"
-								placeholder={property.price}
+								placeholder="Price"
+								required={true}
 								onChange={(e) => setPrice(e.target.value)}
 							/>
 						</h6>
@@ -152,7 +125,8 @@ const PropertyEdit = (props) => {
 							<input
 								type="number"
 								className="form-control"
-								placeholder={property.bedroom}
+								placeholder="Bedroom"
+								required={true}
 								onChange={(e) => setBedroom(e.target.value)}
 							/>
 						</h6>
@@ -165,7 +139,8 @@ const PropertyEdit = (props) => {
 							<input
 								type="text"
 								className="form-control"
-								placeholder={property.location}
+								placeholder="Location"
+								required={true}
 								onChange={(e) => setLocation(e.target.value)}
 							/>
 						</h6>
@@ -178,18 +153,19 @@ const PropertyEdit = (props) => {
 							<input
 								type="text"
 								className="form-control"
-								placeholder={property.description}
+								placeholder="Description"
+								required={true}
 								onChange={(e) => setDescription(e.target.value)}
 							/>
 						</h6>
 						<div className="d-flex justify-content-between mt-4">
 							<Link
-								to={`/property/${id}`}
+								to="/"
 								className="btn btn-danger">
 								Cancel
 							</Link>
 							<button className="btn btn-primary">
-								Save Changes
+								Create Post
 							</button>
 						</div>
 					</div>
@@ -199,4 +175,4 @@ const PropertyEdit = (props) => {
 	)
 }
 
-export default PropertyEdit
+export default PropertyCreate

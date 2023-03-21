@@ -43,7 +43,21 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            "images" => "required",
+        ]);
+
+        $property = new Property;
+        $property->name = $request->input("name");
+        $property->images = $request->input("images");
+        $property->bedroom = $request->input("bedroom");
+        $property->price = $request->input("price");
+        $property->location = $request->input("location");
+        $property->description = $request->input("description");
+        $property->user_id = auth()->user()->id;
+        $property->save();
+
+        return response("Property create", 200);
     }
 
     /**
@@ -128,7 +142,7 @@ class PropertyController extends Controller
         //
     }
 
-    public function propertyImagesEdit(Request $request)
+    public function propertyImages(Request $request)
     {
         $images = $request->file('filepond-property-images')
             ->store('public/property-images');

@@ -36,7 +36,7 @@ const PropertyShow = (props) => {
 					<h6 className="card-text">Contact: {property.phone}</h6>
 					{props.auth.id == id && (
 						<Link
-							to={`/property/${property.id}/edit`}
+							to={`/property-edit/${property.id}`}
 							className="btn btn-primary">
 							Edit
 						</Link>

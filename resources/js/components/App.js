@@ -10,6 +10,7 @@ import Register from "../pages/auth/Register"
 import Index from "../pages/Index"
 import PropertyShow from "../pages/PropertyShow"
 import PropertyEdit from "../pages/PropertyEdit"
+import PropertyCreate from "../pages/PropertyCreate"
 
 const App = () => {
 	const url = "http://localhost:8000"
@@ -42,7 +43,12 @@ const App = () => {
 				render={(props) => <PropertyShow {...{ url, auth }} />}
 			/>
 			<Route
-				path="/property/:id/edit"
+				path="/property-create"
+				exact
+				render={(props) => <PropertyCreate {...{ url, auth }} />}
+			/>
+			<Route
+				path="/property-edit/:id"
 				exact
 				render={(props) => <PropertyEdit {...{ url, auth }} />}
 			/>

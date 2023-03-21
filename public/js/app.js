@@ -91856,12 +91856,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_Index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../pages/Index */ "./resources/js/pages/Index.js");
 /* harmony import */ var _pages_PropertyShow__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../pages/PropertyShow */ "./resources/js/pages/PropertyShow.js");
 /* harmony import */ var _pages_PropertyEdit__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../pages/PropertyEdit */ "./resources/js/pages/PropertyEdit.js");
+/* harmony import */ var _pages_PropertyCreate__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../pages/PropertyCreate */ "./resources/js/pages/PropertyCreate.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -91914,7 +91916,16 @@ var App = function App() {
       });
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
-    path: "/property/:id/edit",
+    path: "/property-create",
+    exact: true,
+    render: function render(props) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_PropertyCreate__WEBPACK_IMPORTED_MODULE_9__["default"], {
+        url: url,
+        auth: auth
+      });
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/property-edit/:id",
     exact: true,
     render: function render(props) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_PropertyEdit__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -91973,13 +91984,18 @@ var TopNav = function TopNav(props) {
   }, props.auth.name == "Guest" ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "nav-link",
-    to: "/login"
+    to: "/property-create",
+    className: "nav-link"
+  }, "Create Post")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "nav-item"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/login",
+    className: "nav-link"
   }, "Login")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "nav-link",
-    to: "/register"
+    to: "/register",
+    className: "nav-link"
   }, "Register"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "nav-item dropdown"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
@@ -92072,6 +92088,222 @@ var Index = function Index(props) {
   }))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Index);
+
+/***/ }),
+
+/***/ "./resources/js/pages/PropertyCreate.js":
+/*!**********************************************!*\
+  !*** ./resources/js/pages/PropertyCreate.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_filepond__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-filepond */ "./node_modules/react-filepond/dist/react-filepond.js");
+/* harmony import */ var react_filepond__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_filepond__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! filepond/dist/filepond.min.css */ "./node_modules/filepond/dist/filepond.min.css");
+/* harmony import */ var filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(filepond_dist_filepond_min_css__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var filepond_plugin_image_exif_orientation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! filepond-plugin-image-exif-orientation */ "./node_modules/filepond-plugin-image-exif-orientation/dist/filepond-plugin-image-exif-orientation.js");
+/* harmony import */ var filepond_plugin_image_exif_orientation__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_exif_orientation__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! filepond-plugin-image-preview */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js");
+/* harmony import */ var filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! filepond-plugin-file-validate-type */ "./node_modules/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js");
+/* harmony import */ var filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var filepond_plugin_image_crop__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! filepond-plugin-image-crop */ "./node_modules/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js");
+/* harmony import */ var filepond_plugin_image_crop__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_crop__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var filepond_plugin_image_transform__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! filepond-plugin-image-transform */ "./node_modules/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js");
+/* harmony import */ var filepond_plugin_image_transform__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_transform__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css */ "./node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css");
+/* harmony import */ var filepond_plugin_image_preview_dist_filepond_plugin_image_preview_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(filepond_plugin_image_preview_dist_filepond_plugin_image_preview_css__WEBPACK_IMPORTED_MODULE_10__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+// Import React FilePond
+
+
+// Import FilePond styles
+
+
+// Import the Image EXIF Orientation and Image Preview plugins
+// Note: These need to be installed separately
+
+
+
+
+
+
+
+// Register the plugins
+Object(react_filepond__WEBPACK_IMPORTED_MODULE_3__["registerPlugin"])(filepond_plugin_image_exif_orientation__WEBPACK_IMPORTED_MODULE_5___default.a, filepond_plugin_image_preview__WEBPACK_IMPORTED_MODULE_6___default.a, filepond_plugin_file_validate_type__WEBPACK_IMPORTED_MODULE_7___default.a, filepond_plugin_image_crop__WEBPACK_IMPORTED_MODULE_8___default.a, filepond_plugin_image_transform__WEBPACK_IMPORTED_MODULE_9___default.a);
+var PropertyCreate = function PropertyCreate(props) {
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useHistory"])();
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    name = _useState2[0],
+    setName = _useState2[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    images = _useState4[0],
+    setImages = _useState4[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    bedroom = _useState6[0],
+    setBedroom = _useState6[1];
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    price = _useState8[0],
+    setPrice = _useState8[1];
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState10 = _slicedToArray(_useState9, 2),
+    location = _useState10[0],
+    setLocation = _useState10[1];
+  var _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState12 = _slicedToArray(_useState11, 2),
+    description = _useState12[0],
+    setDescription = _useState12[1];
+
+  // Get csrf token
+  var token = document.head.querySelector('meta[name="csrf-token"]');
+
+  // Declare new FormData object for form data
+  var formData = new FormData();
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+
+    // Add form data to FormData object
+    formData.append("name", name);
+    formData.append("images", images);
+    formData.append("bedroom", bedroom);
+    formData.append("price", price);
+    formData.append("location", location);
+    formData.append("description", description);
+
+    // Send data to UsersController
+    // Get csrf cookie from Laravel inorder to send a POST request
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(props.url, "/api/property"), formData).then(function (res) {
+        // props.setMessages([res.data])
+        history.push("/");
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    });
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card m-2 w-75"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_filepond__WEBPACK_IMPORTED_MODULE_3__["FilePond"], {
+    name: "filepond-property-images",
+    labelIdle: "Drag & Drop your Image or <span class=\"filepond--label-action text-dark\"> Update image </span>",
+    imageCropAspectRatio: "1:1",
+    acceptedFileTypes: ["image/*"],
+    allowRevert: true,
+    server: {
+      url: "http://localhost:8000/api",
+      process: {
+        url: "/propertyImages",
+        headers: {
+          "X-CSRF-TOKEN": token.content
+        },
+        onload: function onload(res) {
+          return setImages(res);
+        },
+        onerror: function onerror(err) {
+          return console.log(err.response);
+        }
+      }
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("form", {
+    onSubmit: onSubmit
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "card-body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-title d-flex justify-between"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Name",
+    required: true,
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "number",
+    className: "form-control",
+    placeholder: "Price",
+    required: true,
+    onChange: function onChange(e) {
+      return setPrice(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Bedroom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "number",
+    className: "form-control",
+    placeholder: "Bedroom",
+    required: true,
+    onChange: function onChange(e) {
+      return setBedroom(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Location",
+    required: true,
+    onChange: function onChange(e) {
+      return setLocation(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "Description",
+    required: true,
+    onChange: function onChange(e) {
+      return setDescription(e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex justify-content-between mt-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+    to: "/",
+    className: "btn btn-danger"
+  }, "Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+    className: "btn btn-primary"
+  }, "Create Post"))))));
+};
+/* harmony default export */ __webpack_exports__["default"] = (PropertyCreate);
 
 /***/ }),
 
@@ -92219,7 +92451,7 @@ var PropertyEdit = function PropertyEdit(props) {
     server: {
       url: "http://localhost:8000/api",
       process: {
-        url: "/propertyImages/".concat(id),
+        url: "/propertyImages",
         headers: {
           "X-CSRF-TOKEN": token.content
         },
@@ -92257,7 +92489,7 @@ var PropertyEdit = function PropertyEdit(props) {
     htmlFor: "",
     className: "text-left w-25 mr-2"
   }, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    type: "text",
+    type: "number",
     className: "form-control",
     placeholder: property.price,
     onChange: function onChange(e) {
@@ -92269,7 +92501,7 @@ var PropertyEdit = function PropertyEdit(props) {
     htmlFor: "",
     className: "text-left w-25 mr-2"
   }, "Bedroom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    type: "text",
+    type: "number",
     className: "form-control",
     placeholder: property.bedroom,
     onChange: function onChange(e) {
@@ -92372,7 +92604,7 @@ var PropertyShow = function PropertyShow(props) {
   }, "Owner: ", property.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "card-text"
   }, "Contact: ", property.phone), props.auth.id == id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/property/".concat(property.id, "/edit"),
+    to: "/property-edit/".concat(property.id),
     className: "btn btn-primary"
   }, "Edit"))));
 };

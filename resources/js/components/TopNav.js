@@ -34,15 +34,22 @@ const TopNav = (props) => {
 							<>
 								<li className="nav-item">
 									<Link
-										className="nav-link"
-										to="/login">
+										to="/property-create"
+										className="nav-link">
+										Create Post
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link
+										to="/login"
+										className="nav-link">
 										Login
 									</Link>
 								</li>
 								<li className="nav-item">
 									<Link
-										className="nav-link"
-										to="/register">
+										to="/register"
+										className="nav-link">
 										Register
 									</Link>
 								</li>
