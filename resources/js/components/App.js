@@ -14,7 +14,8 @@ import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
 
 const App = () => {
-	const url =  process.env.APP_URL
+	const url = process.env.APP_URL
+	console.log(url)
 
 	// Declare states
 	const [messages, setMessages] = useState([])
@@ -23,14 +24,12 @@ const App = () => {
 
 	// Function for fetching data from API
 	const get = (endpoint, setState, storage = null, errors = true) => {
-		axios
-			.get(`/api/${endpoint}`)
-			.then((res) => {
-				var data = res.data ? res.data : []
-				setState(data)
-				// storage && setLocalStorage(storage, data)
-			})
-			// .catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
+		axios.get(`/api/${endpoint}`).then((res) => {
+			var data = res.data ? res.data : []
+			setState(data)
+			// storage && setLocalStorage(storage, data)
+		})
+		// .catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
 	}
 
 	// Function for getting errors from responses
@@ -64,7 +63,7 @@ const App = () => {
 		getErrors,
 		url,
 		auth,
-		setAuth
+		setAuth,
 	}
 
 	return (
