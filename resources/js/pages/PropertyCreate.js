@@ -56,7 +56,7 @@ const PropertyCreate = (props) => {
 		// Get csrf cookie from Laravel inorder to send a POST request
 		axios.get("sanctum/csrf-cookie").then(() => {
 			axios
-				.post(`${props.url}/api/property`, formData)
+				.post(`/api/property`, formData)
 				.then((res) => {
 					props.setMessages([res.data])
 					history.push("/")
@@ -76,7 +76,7 @@ const PropertyCreate = (props) => {
 						acceptedFileTypes={["image/*"]}
 						allowRevert={true}
 						server={{
-							url: `http://localhost:8000/api`,
+							url: `${props.url}/api`,
 							process: {
 								url: `/propertyImages`,
 								headers: { "X-CSRF-TOKEN": token.content },

@@ -9,9 +9,8 @@ const Index = (props) => {
 	useEffect(() => {
 		// Fetch Property
 		axios
-			.get(`http://localhost:8000/api/property`)
+			.get(`/api/property`)
 			.then((res) => setProperty(res.data))
-			.catch(() => console.log(["Failed to fetch bought videos"]))
 	}, [])
 
 	return (

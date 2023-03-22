@@ -40,7 +40,7 @@ const PropertyEdit = (props) => {
 	useEffect(() => {
 		// Fetch Property
 		axios
-			.get(`http://localhost:8000/api/property/${id}`)
+			.get(`/api/property/${id}`)
 			.then((res) => setProperty(res.data[0]))
 			.catch(() => console.log(["Failed to fetch bought videos"]))
 	}, [])
@@ -67,12 +67,12 @@ const PropertyEdit = (props) => {
 		// Get csrf cookie from Laravel inorder to send a POST request
 		axios.get("sanctum/csrf-cookie").then(() => {
 			axios
-				.post(`${props.url}/api/property/${id}`, formData)
+				.post(`/api/property/${id}`, formData)
 				.then((res) => {
 					props.setMessages([res.data])
 					// Update Property
 					axios
-						.get(`${props.url}/api/property/${id}`)
+						.get(`/api/property/${id}`)
 						.then((res) => setProperty(res.data[0]))
 
 					window.location.reload()
@@ -97,7 +97,7 @@ const PropertyEdit = (props) => {
 						acceptedFileTypes={["image/*"]}
 						allowRevert={true}
 						server={{
-							url: `http://localhost:8000/api`,
+							url: `${props.url}/api`,
 							process: {
 								url: `/propertyImages`,
 								headers: { "X-CSRF-TOKEN": token.content },
@@ -105,9 +105,7 @@ const PropertyEdit = (props) => {
 									setImages(res)
 									// Update Property
 									axios
-										.get(
-											`http://localhost:8000/api/property/${id}`
-										)
+										.get(`/api/property/${id}`)
 										.then((res) => setProperty(res.data[0]))
 								},
 								onerror: (err) => console.log(err.response),

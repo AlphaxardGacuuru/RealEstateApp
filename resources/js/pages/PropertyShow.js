@@ -10,9 +10,8 @@ const PropertyShow = (props) => {
 	useEffect(() => {
 		// Fetch Property
 		axios
-			.get(`http://localhost:8000/api/property/${id}`)
+			.get(`/api/property/${id}`)
 			.then((res) => setProperty(res.data[0]))
-			.catch(() => console.log(["Failed to fetch bought videos"]))
 	}, [])
 
 	return (

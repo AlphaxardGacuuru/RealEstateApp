@@ -14,7 +14,7 @@ import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
 
 const App = () => {
-	const url = "http://localhost:8000"
+	const url =  process.env.APP_URL
 
 	// Declare states
 	const [messages, setMessages] = useState([])
@@ -28,9 +28,9 @@ const App = () => {
 			.then((res) => {
 				var data = res.data ? res.data : []
 				setState(data)
-				storage && setLocalStorage(storage, data)
+				// storage && setLocalStorage(storage, data)
 			})
-			.catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
+			// .catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
 	}
 
 	// Function for getting errors from responses

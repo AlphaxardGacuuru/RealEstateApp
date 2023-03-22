@@ -91902,7 +91902,7 @@ var App = function App() {
     axios.get("/api/".concat(endpoint)).then(function (res) {
       var data = res.data ? res.data : [];
       setState(data);
-      storage && setLocalStorage(storage, data);
+      // storage && setLocalStorage(storage, data)
     })["catch"](function () {
       return errors && setErrors(["Failed to fetch ".concat(endpoint)]);
     });
