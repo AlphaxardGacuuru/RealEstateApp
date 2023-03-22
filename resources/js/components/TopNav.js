@@ -2,6 +2,18 @@ import React from "react"
 import { Link } from "react-router-dom"
 
 const TopNav = (props) => {
+	const logout = (e) => {
+		e.preventDefault()
+
+		axios.get("/sanctum/csrf-cookie").then(() => {
+			axios.post(`/api/logout`).then((res) => {
+				props.setMessages(["Logged out"])
+				// Update Auth
+				props.setAuth({ name: "Guest" })
+			})
+		})
+	}
+
 	return (
 		<nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 			<div className="container">
@@ -34,13 +46,6 @@ const TopNav = (props) => {
 							<>
 								<li className="nav-item">
 									<Link
-										to="/property-create"
-										className="nav-link">
-										Create Post
-									</Link>
-								</li>
-								<li className="nav-item">
-									<Link
 										to="/login"
 										className="nav-link">
 										Login
@@ -55,28 +60,36 @@ const TopNav = (props) => {
 								</li>
 							</>
 						) : (
-							<li className="nav-item dropdown">
-								<Link
-									id="navbarDropdown"
-									className="nav-link dropdown-toggle"
-									to="#"
-									role="button"
-									data-toggle="dropdown"
-									aria-haspopup="true"
-									aria-expanded="false">
-									{props.auth.name}
-								</Link>
-
-								<div
-									className="dropdown-menu dropdown-menu-right"
-									aria-labelledby="navbarDropdown">
+							<>
+								<li className="nav-item">
 									<Link
-										className="dropdown-item"
-										to="{{ route('logout') }}">
-										Logout
+										to="/property-create"
+										className="nav-link">
+										Create Post
 									</Link>
-								</div>
-							</li>
+								</li>
+								<li className="nav-item dropdown">
+									<Link
+										id="navbarDropdown"
+										className="nav-link dropdown-toggle"
+										to="#"
+										role="button"
+										data-toggle="dropdown"
+										aria-haspopup="true"
+										aria-expanded="false">
+										{props.auth.name}
+									</Link>
+									<div
+										className="dropdown-menu dropdown-menu-right"
+										aria-labelledby="navbarDropdown">
+										<a
+											className="dropdown-item"
+											onClick={logout}>
+											Logout
+										</a>
+									</div>
+								</li>
+							</>
 						)}
 					</ul>
 				</div>

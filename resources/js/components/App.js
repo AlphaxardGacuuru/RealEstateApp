@@ -1,8 +1,9 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import ReactDOM from "react-dom"
 import { HashRouter as Router, Route } from "react-router-dom"
 
 import TopNav from "./TopNav"
+import Messages from "./Messages"
 
 import Login from "../pages/auth/login"
 import Register from "../pages/auth/Register"
@@ -15,43 +16,94 @@ import PropertyCreate from "../pages/PropertyCreate"
 const App = () => {
 	const url = "http://localhost:8000"
 
+	// Declare states
+	const [messages, setMessages] = useState([])
+	const [errors, setErrors] = useState([])
 	const [auth, setAuth] = useState({ id: 1, name: "Guest" })
+
+	// Function for fetching data from API
+	const get = (endpoint, setState, storage = null, errors = true) => {
+		axios
+			.get(`/api/${endpoint}`)
+			.then((res) => {
+				var data = res.data ? res.data : []
+				setState(data)
+				storage && setLocalStorage(storage, data)
+			})
+			.catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
+	}
+
+	// Function for getting errors from responses
+	const getErrors = (err, message = false) => {
+		const resErrors = err.response.data.errors
+		var newError = []
+		for (var resError in resErrors) {
+			newError.push(resErrors[resError])
+		}
+		// Get other errors
+		message && newError.push(err.response.data.message)
+		setErrors(newError)
+	}
+
+	// Reset Messages and Errors to null after 3 seconds
+	if (errors.length > 0 || messages.length > 0) {
+		setTimeout(() => setErrors([]), 2900)
+		setTimeout(() => setMessages([]), 2900)
+	}
+
+	useEffect(() => {
+		get("auth", setAuth)
+	}, [])
+
+	const STATE = {
+		messages,
+		setMessages,
+		errors,
+		setErrors,
+		get,
+		getErrors,
+		url,
+		auth,
+		setAuth
+	}
 
 	return (
 		<Router>
-			<TopNav {...{ url, auth }} />
+			<TopNav {...STATE} />
 			<br />
 
 			<Route
 				path="/register"
 				exact
-				render={(props) => <Register />}
+				render={(props) => <Register {...STATE} />}
 			/>
 			<Route
 				path="/login"
 				exact
-				render={(props) => <Login />}
+				render={(props) => <Login {...STATE} />}
 			/>
 			<Route
 				path="/"
 				exact
-				render={(props) => <Index {...{ url, auth }} />}
+				render={(props) => <Index {...STATE} />}
 			/>
 			<Route
 				path="/property/:id"
 				exact
-				render={(props) => <PropertyShow {...{ url, auth }} />}
+				render={(props) => <PropertyShow {...STATE} />}
 			/>
 			<Route
 				path="/property-create"
 				exact
-				render={(props) => <PropertyCreate {...{ url, auth }} />}
+				render={(props) => <PropertyCreate {...STATE} />}
 			/>
 			<Route
 				path="/property-edit/:id"
 				exact
-				render={(props) => <PropertyEdit {...{ url, auth }} />}
+				render={(props) => <PropertyEdit {...STATE} />}
 			/>
+
+			<Messages {...STATE} />
 		</Router>
 	)
 }

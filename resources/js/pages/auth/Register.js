@@ -1,37 +1,39 @@
-import React from "react"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import Axios from "../../lib/Axios"
+import axios from "axios"
 
-const Register = () => {
-	axios.get("/sanctum/csrf-cookie").then(() => {
-		axios
-			.post(`http:localhost:8000/api/register`, {
-				id: id,
+const Register = (props) => {
+	const history = useHistory()
+
+	const [name, setName] = useState("")
+	const [email, setEmail] = useState("")
+	const [phone, setPhone] = useState("")
+	const [password, setPassword] = useState("")
+	const [confirmPassword, setConfirmPassword] = useState("")
+
+	const onSubmit = (e) => {
+		e.preventDefault()
+
+		Axios.get("/sanctum/csrf-cookie").then(() => {
+			Axios.post(`/api/register`, {
 				name: name,
 				email: email,
-				avatar: avatar,
-				username: username,
 				phone: phone,
+				password: password,
+				password_confirmation: confirmPassword,
 			})
-			.then((res) => {
-				props.setMessages(["Account Updated"])
-				// Update Auth
-				axios
-					.get(`${props.url}/api/home`)
-					.then((res) => props.setAuth(res.data))
-				setTimeout(() => history.push("/"), 1000)
-			})
-			.catch((err) => {
-				const resErrors = err.response.data.errors
-
-				var resError
-				var newError = []
-				for (resError in resErrors) {
-					newError.push(resErrors[resError])
-				}
-				// Get other errors
-				newError.push(err.response.data.message)
-				props.setErrors(newError)
-			})
-	})
+				.then((res) => {
+					props.setMessages(["Account Created"])
+					// Update Auth
+					Axios.get(`/api/auth`).then((res) =>
+						props.setAuth(res.data)
+					)
+					setTimeout(() => history.push("/"), 1000)
+				})
+				.catch((err) => props.getErrors(err))
+		})
+	}
 
 	return (
 		<div className="container">
@@ -41,90 +43,102 @@ const Register = () => {
 						<div className="card-header">Register</div>
 
 						<div className="card-body">
-							<form
-								method="POST"
-								action="register">
+							<form onSubmit={onSubmit}>
 								<div className="form-group row">
 									<label
-										for="name"
+										htmlFor="name"
 										className="col-md-4 col-form-label text-md-right">
 										Name
 									</label>
 
 									<div className="col-md-6">
 										<input
-											id="name"
 											type="text"
-											className="form-control @error('name') is-invalid @enderror"
-											name="name"
-											value="name"
-											required
+											className="form-control"
+											placeholder="John Doe"
+											required={true}
 											autoComplete="name"
-											autoFocus
+											autoFocus={true}
+											onChange={(e) =>
+												setName(e.target.value)
+											}
 										/>
-
-										<span
-											className="invalid-feedback"
-											role="alert">
-											<strong>message</strong>
-										</span>
 									</div>
 								</div>
 
 								<div className="form-group row">
 									<label
-										for="email"
+										htmlFor="email"
 										className="col-md-4 col-form-label text-md-right">
 										E-Mail Address
 									</label>
 
 									<div className="col-md-6">
 										<input
-											id="email"
 											type="email"
-											className="form-control @error('email') is-invalid @enderror"
-											name="email"
-											value="email"
-											required
+											className="form-control"
+											placeholder="johndoe@gmail.com"
+											required={true}
 											autoComplete="email"
+											onChange={(e) =>
+												setEmail(e.target.value)
+											}
 										/>
-
-										<span
-											className="invalid-feedback"
-											role="alert">
-											<strong>message</strong>
-										</span>
 									</div>
 								</div>
 
 								<div className="form-group row">
 									<label
-										for="password"
+										htmlFor="email"
+										className="col-md-4 col-form-label text-md-right">
+										Phone
+									</label>
+
+									<div className="col-md-6">
+										<input
+											name="phone"
+											type="phone"
+											className="form-control"
+											placeholder="0712345678"
+											required={true}
+											autoComplete="phone"
+											onChange={(e) =>
+												setPhone(e.target.value)
+											}
+										/>
+									</div>
+								</div>
+
+								<div className="form-group row">
+									<label
+										htmlFor="password"
 										className="col-md-4 col-form-label text-md-right">
 										Password
 									</label>
 
 									<div className="col-md-6">
 										<input
-											id="password"
 											type="password"
-											className="form-control @error('password') is-invalid @enderror"
-											name="password"
-											required
+											className="form-control"
+											placeholder="********"
+											required={true}
 											autoComplete="new-password"
+											onChange={(e) =>
+												setPassword(e.target.value)
+											}
 										/>
 
-										<span
-											className="invalid-feedback"
-											role="alert">
-											<strong>message</strong>
-										</span>
+										{/* <span */}
+										{/* className="invalid-feedback" */}
+										{/* role="alert"> */}
+										{/* <strong>message</strong> */}
+										{/* </span> */}
 									</div>
 								</div>
 
 								<div className="form-group row">
 									<label
-										for="password-confirm"
+										htmlFor="password-confirm"
 										className="col-md-4 col-form-label text-md-right">
 										Confirm Password
 									</label>
@@ -134,18 +148,21 @@ const Register = () => {
 											id="password-confirm"
 											type="password"
 											className="form-control"
-											name="password_confirmation"
-											required
+											placeholder="********"
+											required={true}
 											autoComplete="new-password"
+											onChange={(e) =>
+												setConfirmPassword(
+													e.target.value
+												)
+											}
 										/>
 									</div>
 								</div>
 
 								<div className="form-group row mb-0">
 									<div className="col-md-6 offset-md-4">
-										<button
-											type="submit"
-											className="btn btn-primary">
+										<button className="btn btn-primary">
 											Register
 										</button>
 									</div>
