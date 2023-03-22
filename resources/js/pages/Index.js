@@ -2,13 +2,14 @@
 
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import Axios from "../lib/Axios"
 
 const Index = (props) => {
 	const [property, setProperty] = useState([])
 
 	useEffect(() => {
 		// Fetch Property
-		axios
+		Axios
 			.get(`/api/property`)
 			.then((res) => setProperty(res.data))
 	}, [])
