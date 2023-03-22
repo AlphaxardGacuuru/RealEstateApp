@@ -15,7 +15,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $getProperty = Property::all();
+        $getProperty = Property::orderBy('id', 'desc')->get();
 
         $property = [];
 
@@ -28,7 +28,7 @@ class PropertyController extends Controller
                 "price" => $item->price,
                 "location" => $item->location,
                 "description" => $item->description,
-                "user_id" => $item->user_id,
+                "userId" => $item->user_id,
             ]);
         }
 
@@ -57,7 +57,7 @@ class PropertyController extends Controller
         $property->user_id = auth()->user()->id;
         $property->save();
 
-        return response("Property create", 200);
+        return response("Property created", 200);
     }
 
     /**
@@ -80,7 +80,7 @@ class PropertyController extends Controller
             "price" => $getProperty->price,
             "location" => $getProperty->location,
             "description" => $getProperty->description,
-            "user_id" => $getProperty->user_id,
+            "userId" => $getProperty->user_id,
             "userName" => $getProperty->user->name,
             "phone" => $getProperty->user->phone,
         ]);

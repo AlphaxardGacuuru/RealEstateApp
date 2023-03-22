@@ -23,10 +23,13 @@ const Index = (props) => {
 							key={key}
 							className="card m-2"
 							style={{ width: "20rem" }}>
-							<img
-								src={property.images}
-								className="card-img-top"
-							/>
+							<Link to={`/property/${property.id}`}>
+								<img
+									src={property.images}
+									className="card-img-top"
+									height="200rem"
+								/>
+							</Link>
 							<div className="card-body">
 								<h5 className="card-title text-primary">
 									{property.name}
@@ -43,11 +46,6 @@ const Index = (props) => {
 								<h6 className="card-text text-secondary">
 									Description: {property.description}
 								</h6>
-								<Link
-									to={`/property/${property.id}`}
-									className="btn btn-primary text-capitalize float-right">
-									view
-								</Link>
 							</div>
 						</div>
 					))}

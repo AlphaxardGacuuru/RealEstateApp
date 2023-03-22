@@ -1,8 +1,41 @@
 /** @format */
 
-import React from "react"
+import React, { useState } from "react"
+import { useHistory } from "react-router-dom"
+import Axios from "../../lib/Axios"
 
 const Login = (props) => {
+	const [email, setEmail] = useState("")
+	const [password, setPassword] = useState("")
+	const [remember, setRemember] = useState("")
+
+	const history = useHistory()
+
+	const onSubmit = (e) => {
+		e.preventDefault()
+
+		Axios.get("/sanctum/csrf-cookie").then(() => {
+			Axios.post(`/api/login`, {
+				email: email,
+				password: password,
+				remember: remember,
+			})
+				.then((res) => {
+					props.setMessages(["Logged in"])
+					// Update Logged in user
+					Axios.get(`/api/auth`).then((res) =>
+						props.setAuth(res.data)
+					)
+					// Redirect and reload page
+					setTimeout(() => {
+						history.push("/")
+						location.reload()
+					}, 1000)
+				})
+				.catch((err) => props.getErrors(err))
+		})
+	}
+
 	return (
 		<div className="container">
 			<div className="row justify-content-center">
@@ -11,9 +44,7 @@ const Login = (props) => {
 						<div className="card-header">Login</div>
 
 						<div className="card-body">
-							<form
-								method="POST"
-								action="login">
+							<form onSubmit={onSubmit}>
 								<div className="form-group row">
 									<label
 										htmlFor="email"
@@ -23,21 +54,16 @@ const Login = (props) => {
 
 									<div className="col-md-6">
 										<input
-											id="email"
 											type="email"
-											className="form-control @error('email') is-invalid @enderror"
-											name="email"
-											value="email"
-											required
+											className="form-control"
+											name="johndoe@gmail.com"
+											required={true}
 											autoComplete="email"
-											autoFocus
+											autoFocus={true}
+											onChange={(e) =>
+												setEmail(e.target.value)
+											}
 										/>
-
-										<span
-											className="invalid-feedback"
-											role="alert">
-											<strong>message</strong>
-										</span>
 									</div>
 								</div>
 
@@ -50,19 +76,15 @@ const Login = (props) => {
 
 									<div className="col-md-6">
 										<input
-											id="password"
 											type="password"
-											className="form-control @error('password') is-invalid @enderror"
+											className="form-control"
 											name="password"
-											required
+											required={true}
 											autoComplete="current-password"
+											onChange={(e) =>
+												setPassword(e.target.value)
+											}
 										/>
-
-										<span
-											className="invalid-feedback"
-											role="alert">
-											<strong>message</strong>
-										</span>
 									</div>
 								</div>
 
@@ -74,6 +96,9 @@ const Login = (props) => {
 												type="checkbox"
 												name="remember"
 												id="remember"
+												onChange={(e) =>
+													setRemember(e.target.value)
+												}
 											/>
 
 											<label
@@ -92,12 +117,6 @@ const Login = (props) => {
 											className="btn btn-primary">
 											Login
 										</button>
-
-										<a
-											className="btn btn-link"
-											href="password.request">
-											Forgot Your Password?
-										</a>
 									</div>
 								</div>
 							</form>

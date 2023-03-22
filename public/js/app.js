@@ -92187,10 +92187,13 @@ var Index = function Index(props) {
       style: {
         width: "20rem"
       }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/property/".concat(property.id)
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: property.images,
-      className: "card-img-top"
-    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "card-img-top",
+      height: "200rem"
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "card-body"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
       className: "card-title text-primary"
@@ -92202,10 +92205,7 @@ var Index = function Index(props) {
       className: "card-text"
     }, "Location: ", property.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
       className: "card-text text-secondary"
-    }, "Description: ", property.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-      to: "/property/".concat(property.id),
-      className: "btn btn-primary text-capitalize float-right"
-    }, "view")));
+    }, "Description: ", property.description)));
   }))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Index);
@@ -92316,10 +92316,10 @@ var PropertyCreate = function PropertyCreate(props) {
     // Get csrf cookie from Laravel inorder to send a POST request
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(props.url, "/api/property"), formData).then(function (res) {
-        // props.setMessages([res.data])
+        props.setMessages([res.data]);
         history.push("/");
       })["catch"](function (err) {
-        return console.log(err);
+        return props.getErrors(err);
       });
     });
   };
@@ -92546,14 +92546,14 @@ var PropertyEdit = function PropertyEdit(props) {
     // Get csrf cookie from Laravel inorder to send a POST request
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(props.url, "/api/property/").concat(id), formData).then(function (res) {
-        // props.setMessages([res.data])
+        props.setMessages([res.data]);
         // Update Property
         axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(props.url, "/api/property/").concat(id)).then(function (res) {
           return setProperty(res.data[0]);
         });
         window.location.reload();
       })["catch"](function (err) {
-        return console.log(err);
+        return props.getErrors(err);
       });
     });
   };
@@ -92724,7 +92724,7 @@ var PropertyShow = function PropertyShow(props) {
     className: "card-text"
   }, "Owner: ", property.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
     className: "card-text"
-  }, "Contact: ", property.phone), props.auth.id == id && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  }, "Contact: ", property.phone), props.auth.id == property.userId && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/property-edit/".concat(property.id),
     className: "btn btn-primary"
   }, "Edit"))));
@@ -92923,10 +92923,56 @@ var Register = function Register(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _lib_Axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/Axios */ "./resources/js/lib/Axios.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
+function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 /** @format */
 
 
+
+
 var Login = function Login(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+    _useState2 = _slicedToArray(_useState, 2),
+    email = _useState2[0],
+    setEmail = _useState2[1];
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+    _useState4 = _slicedToArray(_useState3, 2),
+    password = _useState4[0],
+    setPassword = _useState4[1];
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+    _useState6 = _slicedToArray(_useState5, 2),
+    remember = _useState6[0],
+    setRemember = _useState6[1];
+  var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
+  var onSubmit = function onSubmit(e) {
+    e.preventDefault();
+    _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/sanctum/csrf-cookie").then(function () {
+      _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("/api/login", {
+        email: email,
+        password: password,
+        remember: remember
+      }).then(function (res) {
+        props.setMessages(["Logged in"]);
+        // Update Logged in user
+        _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/api/auth").then(function (res) {
+          return props.setAuth(res.data);
+        });
+        // Redirect and reload page
+        setTimeout(function () {
+          history.push("/");
+          location.reload();
+        }, 1000);
+      })["catch"](function (err) {
+        return props.getErrors(err);
+      });
+    });
+  };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -92940,8 +92986,7 @@ var Login = function Login(props) {
   }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-    method: "POST",
-    action: "login"
+    onSubmit: onSubmit
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -92950,18 +92995,16 @@ var Login = function Login(props) {
   }, "E-Mail Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "email",
     type: "email",
-    className: "form-control @error('email') is-invalid @enderror",
-    name: "email",
-    value: "email",
+    className: "form-control",
+    name: "johndoe@gmail.com",
     required: true,
     autoComplete: "email",
-    autoFocus: true
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "invalid-feedback",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "message")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    autoFocus: true,
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "password",
@@ -92969,16 +93012,15 @@ var Login = function Login(props) {
   }, "Password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    id: "password",
     type: "password",
-    className: "form-control @error('password') is-invalid @enderror",
+    className: "form-control",
     name: "password",
     required: true,
-    autoComplete: "current-password"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "invalid-feedback",
-    role: "alert"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("strong", null, "message")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    autoComplete: "current-password",
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    }
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6 offset-md-4"
@@ -92988,7 +93030,10 @@ var Login = function Login(props) {
     className: "form-check-input",
     type: "checkbox",
     name: "remember",
-    id: "remember"
+    id: "remember",
+    onChange: function onChange(e) {
+      return setRemember(e.target.value);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "form-check-label",
     htmlFor: "remember"
@@ -92999,10 +93044,7 @@ var Login = function Login(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit",
     className: "btn btn-primary"
-  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-    className: "btn btn-link",
-    href: "password.request"
-  }, "Forgot Your Password?")))))))));
+  }, "Login")))))))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Login);
 

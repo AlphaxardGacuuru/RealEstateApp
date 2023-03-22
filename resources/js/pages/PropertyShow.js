@@ -34,7 +34,7 @@ const PropertyShow = (props) => {
 					</h6>
 					<h6 className="card-text">Owner: {property.name}</h6>
 					<h6 className="card-text">Contact: {property.phone}</h6>
-					{props.auth.id == id && (
+					{props.auth.id == property.userId && (
 						<Link
 							to={`/property-edit/${property.id}`}
 							className="btn btn-primary">

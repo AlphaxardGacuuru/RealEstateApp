@@ -58,10 +58,10 @@ const PropertyCreate = (props) => {
 			axios
 				.post(`${props.url}/api/property`, formData)
 				.then((res) => {
-					// props.setMessages([res.data])
+					props.setMessages([res.data])
 					history.push("/")
 				})
-				.catch((err) => console.log(err))
+				.catch((err) => props.getErrors(err))
 		})
 	}
 
