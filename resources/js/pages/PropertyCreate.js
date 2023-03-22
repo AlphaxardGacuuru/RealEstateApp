@@ -76,7 +76,7 @@ const PropertyCreate = (props) => {
 						acceptedFileTypes={["image/*"]}
 						allowRevert={true}
 						server={{
-							url: `${props.url}/api`,
+							url: `/api`,
 							process: {
 								url: `/propertyImages`,
 								headers: { "X-CSRF-TOKEN": token.content },

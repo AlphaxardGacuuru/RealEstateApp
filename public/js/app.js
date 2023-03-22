@@ -92333,7 +92333,7 @@ var PropertyCreate = function PropertyCreate(props) {
     acceptedFileTypes: ["image/*"],
     allowRevert: true,
     server: {
-      url: "".concat(props.url, "/api"),
+      url: "/api",
       process: {
         url: "/propertyImages",
         headers: {
@@ -92571,7 +92571,7 @@ var PropertyEdit = function PropertyEdit(props) {
     acceptedFileTypes: ["image/*"],
     allowRevert: true,
     server: {
-      url: "".concat(props.url, "/api"),
+      url: "/api",
       process: {
         url: "/propertyImages",
         headers: {
