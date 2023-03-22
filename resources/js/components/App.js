@@ -14,7 +14,7 @@ import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
 
 const App = () => {
-	const url = process.env.APP_URL
+	const url = process.env.MIX_APP_URL
 	console.log(url)
 
 	// Declare states

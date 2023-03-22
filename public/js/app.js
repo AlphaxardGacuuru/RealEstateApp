@@ -91845,7 +91845,7 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
@@ -91876,7 +91876,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 var App = function App() {
-  var url = "http://localhost:8000";
+  var url = process.env.MIX_APP_URL;
+  console.log(url);
 
   // Declare states
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
@@ -91903,9 +91904,8 @@ var App = function App() {
       var data = res.data ? res.data : [];
       setState(data);
       // storage && setLocalStorage(storage, data)
-    })["catch"](function () {
-      return errors && setErrors(["Failed to fetch ".concat(endpoint)]);
     });
+    // .catch(() => errors && setErrors([`Failed to fetch ${endpoint}`]))
   };
 
   // Function for getting errors from responses
@@ -91986,6 +91986,7 @@ var App = function App() {
 if (document.getElementById("app")) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById("app"));
 }
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../node_modules/process/browser.js */ "./node_modules/process/browser.js")))
 
 /***/ }),
 
@@ -92131,7 +92132,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var Axios = axios__WEBPACK_IMPORTED_MODULE_0___default.a.create({
-  baseURL: process.env.APP_URL,
+  baseURL: process.env.MIX_APP_URL,
   withCredentials: true
 });
 /* harmony default export */ __webpack_exports__["default"] = (Axios);
@@ -92151,6 +92152,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _lib_Axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/Axios */ "./resources/js/lib/Axios.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -92161,6 +92163,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Index = function Index(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
     _useState2 = _slicedToArray(_useState, 2),
@@ -92168,10 +92171,8 @@ var Index = function Index(props) {
     setProperty = _useState2[1];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     // Fetch Property
-    axios.get("http://localhost:8000/api/property").then(function (res) {
+    _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/api/property").then(function (res) {
       return setProperty(res.data);
-    })["catch"](function () {
-      return console.log(["Failed to fetch bought videos"]);
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -92315,7 +92316,7 @@ var PropertyCreate = function PropertyCreate(props) {
     // Send data to UsersController
     // Get csrf cookie from Laravel inorder to send a POST request
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(props.url, "/api/property"), formData).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/property", formData).then(function (res) {
         props.setMessages([res.data]);
         history.push("/");
       })["catch"](function (err) {
@@ -92332,7 +92333,7 @@ var PropertyCreate = function PropertyCreate(props) {
     acceptedFileTypes: ["image/*"],
     allowRevert: true,
     server: {
-      url: "http://localhost:8000/api",
+      url: "".concat(props.url, "/api"),
       process: {
         url: "/propertyImages",
         headers: {
@@ -92518,7 +92519,7 @@ var PropertyEdit = function PropertyEdit(props) {
     id = _useParams.id;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     // Fetch Property
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/property/".concat(id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/property/".concat(id)).then(function (res) {
       return setProperty(res.data[0]);
     })["catch"](function () {
       return console.log(["Failed to fetch bought videos"]);
@@ -92545,10 +92546,10 @@ var PropertyEdit = function PropertyEdit(props) {
     // Send data to UsersController
     // Get csrf cookie from Laravel inorder to send a POST request
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("".concat(props.url, "/api/property/").concat(id), formData).then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/property/".concat(id), formData).then(function (res) {
         props.setMessages([res.data]);
         // Update Property
-        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("".concat(props.url, "/api/property/").concat(id)).then(function (res) {
+        axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/property/".concat(id)).then(function (res) {
           return setProperty(res.data[0]);
         });
         window.location.reload();
@@ -92570,7 +92571,7 @@ var PropertyEdit = function PropertyEdit(props) {
     acceptedFileTypes: ["image/*"],
     allowRevert: true,
     server: {
-      url: "http://localhost:8000/api",
+      url: "".concat(props.url, "/api"),
       process: {
         url: "/propertyImages",
         headers: {
@@ -92579,7 +92580,7 @@ var PropertyEdit = function PropertyEdit(props) {
         onload: function onload(res) {
           setImages(res);
           // Update Property
-          axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/property/".concat(id)).then(function (res) {
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/property/".concat(id)).then(function (res) {
             return setProperty(res.data[0]);
           });
         },
@@ -92697,10 +92698,8 @@ var PropertyShow = function PropertyShow(props) {
     id = _useParams.id;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     // Fetch Property
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("http://localhost:8000/api/property/".concat(id)).then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/property/".concat(id)).then(function (res) {
       return setProperty(res.data[0]);
-    })["catch"](function () {
-      return console.log(["Failed to fetch bought videos"]);
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
