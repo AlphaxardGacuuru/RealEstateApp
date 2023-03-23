@@ -9,13 +9,13 @@ import Login from "../pages/auth/login"
 import Register from "../pages/auth/Register"
 
 import Index from "../pages/Index"
+import Property from "../pages/Property"
 import PropertyShow from "../pages/PropertyShow"
 import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
 
 const App = () => {
 	const url = process.env.MIX_APP_URL
-	console.log(url)
 
 	// Declare states
 	const [messages, setMessages] = useState([])
@@ -85,6 +85,11 @@ const App = () => {
 				path="/"
 				exact
 				render={(props) => <Index {...STATE} />}
+			/>
+			<Route
+				path="/property"
+				exact
+				render={(props) => <Property {...STATE} />}
 			/>
 			<Route
 				path="/property/:id"

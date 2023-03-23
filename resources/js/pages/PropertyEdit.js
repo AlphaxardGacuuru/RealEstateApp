@@ -184,7 +184,7 @@ const PropertyEdit = (props) => {
 							<Link
 								to={`/property/${id}`}
 								className="btn btn-danger">
-								Cancel
+								Back
 							</Link>
 							<button className="btn btn-primary">
 								Save Changes
