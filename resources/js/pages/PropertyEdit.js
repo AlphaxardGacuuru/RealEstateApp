@@ -83,6 +83,7 @@ const PropertyEdit = (props) => {
 
 	return (
 		<center>
+			<h1 className="text-center">Edit Property</h1>
 			<div className="card m-2 w-75">
 				<div>
 					<img

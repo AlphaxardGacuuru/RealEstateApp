@@ -67,6 +67,8 @@ const PropertyCreate = (props) => {
 
 	return (
 		<center>
+			<h1 className="text-center">Upload Property</h1>
+
 			<div className="card m-2 w-75">
 				<div>
 					<FilePond
@@ -164,9 +166,7 @@ const PropertyCreate = (props) => {
 								className="btn btn-danger">
 								Cancel
 							</Link>
-							<button className="btn btn-primary">
-								Create Post
-							</button>
+							<button className="btn btn-primary">Create Post</button>
 						</div>
 					</div>
 				</form>
