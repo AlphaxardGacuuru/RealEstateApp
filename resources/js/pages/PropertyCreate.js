@@ -34,6 +34,7 @@ const PropertyCreate = (props) => {
 	const [price, setPrice] = useState("")
 	const [location, setLocation] = useState("")
 	const [description, setDescription] = useState("")
+	const [status, setStatus] = useState("")
 
 	// Get csrf token
 	const token = document.head.querySelector('meta[name="csrf-token"]')
@@ -51,6 +52,7 @@ const PropertyCreate = (props) => {
 		formData.append("price", price)
 		formData.append("location", location)
 		formData.append("description", description)
+		formData.append("status", status)
 
 		// Send data to UsersController
 		// Get csrf cookie from Laravel inorder to send a POST request
@@ -96,6 +98,7 @@ const PropertyCreate = (props) => {
 								className="text-left w-25 mr-2">
 								Name
 							</label>
+
 							<input
 								type="text"
 								className="form-control"
@@ -104,12 +107,14 @@ const PropertyCreate = (props) => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Price
 							</label>
+
 							<input
 								type="number"
 								className="form-control"
@@ -118,12 +123,14 @@ const PropertyCreate = (props) => {
 								onChange={(e) => setPrice(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Bedroom
 							</label>
+
 							<input
 								type="number"
 								className="form-control"
@@ -132,12 +139,14 @@ const PropertyCreate = (props) => {
 								onChange={(e) => setBedroom(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Location
 							</label>
+
 							<input
 								type="text"
 								className="form-control"
@@ -146,12 +155,14 @@ const PropertyCreate = (props) => {
 								onChange={(e) => setLocation(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Description
 							</label>
+
 							<input
 								type="text"
 								className="form-control"
@@ -160,6 +171,25 @@ const PropertyCreate = (props) => {
 								onChange={(e) => setDescription(e.target.value)}
 							/>
 						</h6>
+
+						<h6 className="card-text d-flex">
+							<label
+								htmlFor="status"
+								className="text-left w-25 mr-2">
+								Status
+							</label>
+
+							<select
+								name="status"
+								className="form-control"
+								type="checkbox"
+								required={true}
+								onChange={(e) => setStatus(e.target.value)}>
+								<option value="vacant">Vacant</option>
+								<option value="occupied">Occupied</option>
+							</select>
+						</h6>
+
 						<div className="d-flex justify-content-between mt-4">
 							<Link
 								to="/"

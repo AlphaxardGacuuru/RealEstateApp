@@ -28,6 +28,7 @@ class PropertyController extends Controller
                 "price" => $item->price,
                 "location" => $item->location,
                 "description" => $item->description,
+                "status" => $item->status,
                 "userId" => $item->user_id,
             ]);
         }
@@ -54,6 +55,7 @@ class PropertyController extends Controller
         $property->price = $request->input("price");
         $property->location = $request->input("location");
         $property->description = $request->input("description");
+        $property->status = $request->input("status");
         $property->user_id = auth()->user()->id;
         $property->save();
 
@@ -80,6 +82,7 @@ class PropertyController extends Controller
             "price" => $getProperty->price,
             "location" => $getProperty->location,
             "description" => $getProperty->description,
+            "status" => $getProperty->status,
             "userId" => $getProperty->user_id,
             "userName" => $getProperty->user->name,
             "phone" => $getProperty->user->phone,
@@ -124,6 +127,10 @@ class PropertyController extends Controller
 
         if ($request->filled("description")) {
             $property->description = $request->input("description");
+        }
+
+        if ($request->filled("status")) {
+            $property->status = $request->input("status");
         }
 
         $property->save();

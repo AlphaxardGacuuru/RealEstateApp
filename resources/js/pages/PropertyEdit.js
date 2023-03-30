@@ -34,6 +34,7 @@ const PropertyEdit = (props) => {
 	const [price, setPrice] = useState("")
 	const [location, setLocation] = useState("")
 	const [description, setDescription] = useState("")
+	const [status, setStatus] = useState("")
 
 	let { id } = useParams()
 
@@ -61,6 +62,7 @@ const PropertyEdit = (props) => {
 		price && formData.append("price", price)
 		location && formData.append("location", location)
 		description && formData.append("description", description)
+		status && formData.append("status", status)
 		formData.append("_method", "put")
 
 		// Send data to UsersController
@@ -129,12 +131,14 @@ const PropertyEdit = (props) => {
 								onChange={(e) => setName(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Price
 							</label>
+
 							<input
 								type="number"
 								className="form-control"
@@ -142,12 +146,14 @@ const PropertyEdit = (props) => {
 								onChange={(e) => setPrice(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Bedroom
 							</label>
+
 							<input
 								type="number"
 								className="form-control"
@@ -155,12 +161,14 @@ const PropertyEdit = (props) => {
 								onChange={(e) => setBedroom(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Location
 							</label>
+
 							<input
 								type="text"
 								className="form-control"
@@ -168,12 +176,14 @@ const PropertyEdit = (props) => {
 								onChange={(e) => setLocation(e.target.value)}
 							/>
 						</h6>
+
 						<h6 className="card-text d-flex">
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
 								Description
 							</label>
+
 							<input
 								type="text"
 								className="form-control"
@@ -181,15 +191,39 @@ const PropertyEdit = (props) => {
 								onChange={(e) => setDescription(e.target.value)}
 							/>
 						</h6>
+
+						<h6 className="card-text d-flex">
+							<label
+								htmlFor="status"
+								className="text-left w-25 mr-2">
+								Status
+							</label>
+
+							<select
+								name="status"
+								className="form-control"
+								type="checkbox"
+								required={true}
+								onChange={(e) => setStatus(e.target.value)}>
+								<option
+									value="vacant"
+									selected={property.status == "vacant" ? true : false}>
+									Vacant
+								</option>
+								<option
+									value="occupied"
+									selected={property.status == "occupied" ? true : false}>
+									Occupied
+								</option>
+							</select>
+						</h6>
 						<div className="d-flex justify-content-between mt-4">
 							<Link
 								to={`/property/${id}`}
 								className="btn btn-danger">
 								Back
 							</Link>
-							<button className="btn btn-primary">
-								Save Changes
-							</button>
+							<button className="btn btn-primary">Save Changes</button>
 						</div>
 					</div>
 				</form>

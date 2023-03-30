@@ -15,12 +15,13 @@ class CreatePropertiesTable extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('images');
-            $table->string('bedroom');
-            $table->string('price');
-            $table->string('location');
-            $table->string('description');
+            $table->string('name')->nullable();
+            $table->string('images')->nullable();
+            $table->string('bedroom')->nullable();
+            $table->string('price')->nullable();
+            $table->string('location')->nullable();
+            $table->string('description')->nullable();
+            $table->string('status')->nullable();
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')

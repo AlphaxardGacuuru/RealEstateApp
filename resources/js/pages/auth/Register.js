@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { useHistory } from "react-router-dom"
 import Axios from "../../lib/Axios"
-import axios from "axios"
 
 const Register = (props) => {
 	const history = useHistory()
@@ -26,9 +25,7 @@ const Register = (props) => {
 				.then((res) => {
 					props.setMessages(["Account Created"])
 					// Update Auth
-					Axios.get(`/api/auth`).then((res) =>
-						props.setAuth(res.data)
-					)
+					Axios.get(`/api/auth`).then((res) => props.setAuth(res.data))
 					setTimeout(() => history.push("/"), 1000)
 				})
 				.catch((err) => props.getErrors(err))
@@ -59,9 +56,7 @@ const Register = (props) => {
 											required={true}
 											autoComplete="name"
 											autoFocus={true}
-											onChange={(e) =>
-												setName(e.target.value)
-											}
+											onChange={(e) => setName(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -80,9 +75,7 @@ const Register = (props) => {
 											placeholder="johndoe@gmail.com"
 											required={true}
 											autoComplete="email"
-											onChange={(e) =>
-												setEmail(e.target.value)
-											}
+											onChange={(e) => setEmail(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -91,7 +84,7 @@ const Register = (props) => {
 									<label
 										htmlFor="email"
 										className="col-md-4 col-form-label text-md-right">
-										Phone
+										Landlord/Caretaker Phone
 									</label>
 
 									<div className="col-md-6">
@@ -102,9 +95,7 @@ const Register = (props) => {
 											placeholder="0712345678"
 											required={true}
 											autoComplete="phone"
-											onChange={(e) =>
-												setPhone(e.target.value)
-											}
+											onChange={(e) => setPhone(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -123,9 +114,7 @@ const Register = (props) => {
 											placeholder="********"
 											required={true}
 											autoComplete="new-password"
-											onChange={(e) =>
-												setPassword(e.target.value)
-											}
+											onChange={(e) => setPassword(e.target.value)}
 										/>
 
 										{/* <span */}
@@ -151,20 +140,14 @@ const Register = (props) => {
 											placeholder="********"
 											required={true}
 											autoComplete="new-password"
-											onChange={(e) =>
-												setConfirmPassword(
-													e.target.value
-												)
-											}
+											onChange={(e) => setConfirmPassword(e.target.value)}
 										/>
 									</div>
 								</div>
 
 								<div className="form-group row mb-0">
 									<div className="col-md-6 offset-md-4">
-										<button className="btn btn-primary">
-											Register
-										</button>
+										<button className="btn btn-primary">Register</button>
 									</div>
 								</div>
 							</form>

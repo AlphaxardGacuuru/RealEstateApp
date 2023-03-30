@@ -13,5 +13,6 @@ $factory->define(Property::class, function (Faker $faker) {
         "price" => $faker->numberBetween(10000, 50000),
         "location" => $faker->streetName(),
 		"description" => $faker->realText($maxNbChars = 20, $indexSize = 2),
+		"status" => "vacant",
     ];
 });

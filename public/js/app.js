@@ -92390,6 +92390,10 @@ var PropertyCreate = function PropertyCreate(props) {
     _useState12 = _slicedToArray(_useState11, 2),
     description = _useState12[0],
     setDescription = _useState12[1];
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState14 = _slicedToArray(_useState13, 2),
+    status = _useState14[0],
+    setStatus = _useState14[1];
 
   // Get csrf token
   var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -92406,6 +92410,7 @@ var PropertyCreate = function PropertyCreate(props) {
     formData.append("price", price);
     formData.append("location", location);
     formData.append("description", description);
+    formData.append("status", status);
 
     // Send data to UsersController
     // Get csrf cookie from Laravel inorder to send a POST request
@@ -92512,7 +92517,24 @@ var PropertyCreate = function PropertyCreate(props) {
     onChange: function onChange(e) {
       return setDescription(e.target.value);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "status",
+    className: "text-left w-25 mr-2"
+  }, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    name: "status",
+    className: "form-control",
+    type: "checkbox",
+    required: true,
+    onChange: function onChange(e) {
+      return setStatus(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "vacant"
+  }, "Vacant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "occupied"
+  }, "Occupied"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex justify-content-between mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/",
@@ -92611,6 +92633,10 @@ var PropertyEdit = function PropertyEdit(props) {
     _useState14 = _slicedToArray(_useState13, 2),
     description = _useState14[0],
     setDescription = _useState14[1];
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    status = _useState16[0],
+    setStatus = _useState16[1];
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useParams"])(),
     id = _useParams.id;
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
@@ -92637,6 +92663,7 @@ var PropertyEdit = function PropertyEdit(props) {
     price && formData.append("price", price);
     location && formData.append("location", location);
     description && formData.append("description", description);
+    status && formData.append("status", status);
     formData.append("_method", "put");
 
     // Send data to UsersController
@@ -92751,7 +92778,26 @@ var PropertyEdit = function PropertyEdit(props) {
     onChange: function onChange(e) {
       return setDescription(e.target.value);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "status",
+    className: "text-left w-25 mr-2"
+  }, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    name: "status",
+    className: "form-control",
+    type: "checkbox",
+    required: true,
+    onChange: function onChange(e) {
+      return setStatus(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "vacant",
+    selected: property.status == "vacant" ? true : false
+  }, "Vacant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "occupied",
+    selected: property.status == "occupied" ? true : false
+  }, "Occupied"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex justify-content-between mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/property/".concat(id),
@@ -92843,15 +92889,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _lib_Axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../lib/Axios */ "./resources/js/lib/Axios.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) arr2[i] = arr[i]; return arr2; }
 function _iterableToArrayLimit(arr, i) { var _i = null == arr ? null : "undefined" != typeof Symbol && arr[Symbol.iterator] || arr["@@iterator"]; if (null != _i) { var _s, _e, _x, _r, _arr = [], _n = !0, _d = !1; try { if (_x = (_i = _i.call(arr)).next, 0 === i) { if (Object(_i) !== _i) return; _n = !1; } else for (; !(_n = (_s = _x.call(_i)).done) && (_arr.push(_s.value), _arr.length !== i); _n = !0); } catch (err) { _d = !0, _e = err; } finally { try { if (!_n && null != _i["return"] && (_r = _i["return"](), Object(_r) !== _r)) return; } finally { if (_d) throw _e; } } return _arr; } }
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -92952,7 +92995,7 @@ var Register = function Register(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email",
     className: "col-md-4 col-form-label text-md-right"
-  }, "Phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Landlord/Caretaker Phone"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     name: "phone",
