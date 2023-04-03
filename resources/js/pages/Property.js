@@ -67,6 +67,7 @@ const Property = (props) => {
 								  0
 								: true
 						)
+						.filter((item) => item.status == "vacant")
 						.map((property, key) => (
 							<div
 								key={key}

@@ -13,6 +13,7 @@ import Property from "../pages/Property"
 import PropertyShow from "../pages/PropertyShow"
 import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
+import Profile from "../pages/User/Profile"
 
 const App = () => {
 	const url = process.env.MIX_APP_URL
@@ -85,6 +86,11 @@ const App = () => {
 				path="/"
 				exact
 				render={(props) => <Index {...STATE} />}
+			/>
+			<Route
+				path="/profile"
+				exact
+				render={(props) => <Profile {...STATE} />}
 			/>
 			<Route
 				path="/property"

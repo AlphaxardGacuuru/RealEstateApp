@@ -19,7 +19,7 @@ const TopNav = (props) => {
 			<div className="container">
 				<Link
 					className="navbar-brand"
-					to="/">
+					to="/property">
 					Real Estate App
 				</Link>
 				<button
@@ -82,6 +82,11 @@ const TopNav = (props) => {
 									<div
 										className="dropdown-menu dropdown-menu-right"
 										aria-labelledby="navbarDropdown">
+										<Link
+											to="/profile"
+											className="dropdown-item">
+											My Property
+										</Link>
 										<a
 											className="dropdown-item"
 											onClick={logout}>
