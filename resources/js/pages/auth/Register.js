@@ -84,7 +84,7 @@ const Register = (props) => {
 									<label
 										htmlFor="email"
 										className="col-md-4 col-form-label text-md-right">
-										Landlord/Caretaker Phone
+										Landlord / Caretaker Phone
 									</label>
 
 									<div className="col-md-6">
