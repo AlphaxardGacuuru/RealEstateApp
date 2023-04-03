@@ -35,6 +35,7 @@ const PropertyCreate = (props) => {
 	const [location, setLocation] = useState("")
 	const [description, setDescription] = useState("")
 	const [status, setStatus] = useState("")
+	const [payment, setPayment] = useState("")
 
 	// Get csrf token
 	const token = document.head.querySelector('meta[name="csrf-token"]')
@@ -182,12 +183,51 @@ const PropertyCreate = (props) => {
 							<select
 								name="status"
 								className="form-control"
-								type="checkbox"
 								required={true}
 								onChange={(e) => setStatus(e.target.value)}>
 								<option value="vacant">Vacant</option>
 								<option value="occupied">Occupied</option>
 							</select>
+						</h6>
+						<br />
+
+						<h3>Payment</h3>
+						<h4>BUY GOODS: Jambo Africa Programme</h4>
+						<h4>TILL No: 763614</h4>
+
+						<h6 className="card-text d-flex">
+							<label
+								htmlFor=""
+								className="text-left w-25 mr-2">
+								Duration
+							</label>
+
+							<select
+								name="status"
+								className="form-control"
+								disabled={true}
+								// required={true}
+								onChange={(e) => setPayment(e.target.value)}>
+								<option value="1">1 Month</option>
+								<option value="2">2 Months</option>
+								<option value="3">3 Months</option>
+							</select>
+						</h6>
+
+						<h6 className="card-text d-flex">
+							<label
+								htmlFor=""
+								className="text-left w-25 mr-2">
+								Bill
+							</label>
+
+							<input
+								type="text"
+								className="form-control"
+								placeholder="KES 0"
+								disabled={true}
+								// required={true}
+							/>
 						</h6>
 
 						<div className="d-flex justify-content-between mt-4">

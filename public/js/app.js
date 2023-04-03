@@ -92407,6 +92407,10 @@ var PropertyCreate = function PropertyCreate(props) {
     _useState14 = _slicedToArray(_useState13, 2),
     status = _useState14[0],
     setStatus = _useState14[1];
+  var _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+    _useState16 = _slicedToArray(_useState15, 2),
+    payment = _useState16[0],
+    setPayment = _useState16[1];
 
   // Get csrf token
   var token = document.head.querySelector('meta[name="csrf-token"]');
@@ -92538,7 +92542,6 @@ var PropertyCreate = function PropertyCreate(props) {
   }, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     name: "status",
     className: "form-control",
-    type: "checkbox",
     required: true,
     onChange: function onChange(e) {
       return setStatus(e.target.value);
@@ -92547,7 +92550,38 @@ var PropertyCreate = function PropertyCreate(props) {
     value: "vacant"
   }, "Vacant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
     value: "occupied"
-  }, "Occupied"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "Occupied"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "Payment"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "BUY GOODS: Jambo Africa Programme"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h4", null, "TILL No: 763614"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+    name: "status",
+    className: "form-control",
+    disabled: true
+    // required={true}
+    ,
+    onChange: function onChange(e) {
+      return setPayment(e.target.value);
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "1"
+  }, "1 Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "2"
+  }, "2 Months"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", {
+    value: "3"
+  }, "3 Months"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h6", {
+    className: "card-text d-flex"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+    htmlFor: "",
+    className: "text-left w-25 mr-2"
+  }, "Bill"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    type: "text",
+    className: "form-control",
+    placeholder: "KES 0",
+    disabled: true
+    // required={true}
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex justify-content-between mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/",
