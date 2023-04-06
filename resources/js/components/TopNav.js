@@ -14,12 +14,21 @@ const TopNav = (props) => {
 		})
 	}
 
+	var display
+
+	// Hide TopNav from various pages
+	location.pathname.match("/")
+		? (display = "none")
+		: (display = "")
+
 	return (
-		<nav className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+		<nav
+			className="navbar navbar-expand-md navbar-light bg-white shadow-sm"
+			style={{ display: display }}>
 			<div className="container">
 				<Link
 					className="navbar-brand"
-					to="/property">
+					to="/">
 					Real Estate App
 				</Link>
 				<button

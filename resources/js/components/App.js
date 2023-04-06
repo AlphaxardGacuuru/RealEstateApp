@@ -16,6 +16,13 @@ import PropertyCreate from "../pages/PropertyCreate"
 import Profile from "../pages/User/Profile"
 
 const App = () => {
+	// Redirect if URL is not secure
+	var unsecureUrl = window.location.href.match(/http:\/\/www.onesoko.co.ke/)
+
+	if (unsecureUrl) {
+		window.location.href = "https://www.onesoko.co.ke"
+	}
+
 	const url = process.env.MIX_APP_URL
 
 	// Declare states
