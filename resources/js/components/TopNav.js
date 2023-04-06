@@ -14,17 +14,9 @@ const TopNav = (props) => {
 		})
 	}
 
-	var display
-
-	// Hide TopNav from various pages
-	location.pathname.match("/")
-		? (display = "none")
-		: (display = "")
-
 	return (
 		<nav
-			className="navbar navbar-expand-md navbar-light bg-white shadow-sm"
-			style={{ display: display }}>
+			className="navbar navbar-expand-md navbar-light bg-white shadow-sm">
 			<div className="container">
 				<Link
 					className="navbar-brand"

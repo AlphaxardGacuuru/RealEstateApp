@@ -12,14 +12,14 @@ const Index = (props) => {
 
 				<div className="d-flex justify-content-between flex-column mt-5">
 					<Link
-						to="/property"
+						to={props.auth.name == "Guest" ? "/register" : "/property-create"}
 						className="btn btn-primary btn-lg m-2">
 						I am a Landlord / Caretaker looking for a tenant
 					</Link>
 					<Link
-						to={props.auth.name == "Guest" ? "/register" : "/property-create"}
+						to="/property"
 						className="btn btn-primary btn-lg m-2">
-						I am a tenant looking for a House
+						I am a Tenant looking for a House
 					</Link>
 				</div>
 			</div>
