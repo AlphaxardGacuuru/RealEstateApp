@@ -17,7 +17,7 @@ import Profile from "../pages/User/Profile"
 
 const App = () => {
 	// Redirect if URL is not secure
-	var unsecureUrl = window.location.href.match(/http:\/\/www.onesoko.co.ke/)
+	var unsecureUrl = window.location.href.match(/http:/)
 
 	if (unsecureUrl) {
 		window.location.href = "https://www.onesoko.co.ke"
