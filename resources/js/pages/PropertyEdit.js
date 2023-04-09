@@ -122,7 +122,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Name
+								Property Name
 							</label>
 							<input
 								type="text"
@@ -136,7 +136,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Price
+								Property Rent
 							</label>
 
 							<input
@@ -151,7 +151,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Bedroom
+								No of Bedrooms
 							</label>
 
 							<input
@@ -166,7 +166,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Location
+								Property Location
 							</label>
 
 							<input
@@ -181,7 +181,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Description
+								Property Description
 							</label>
 
 							<input
@@ -196,7 +196,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor="status"
 								className="text-left w-25 mr-2">
-								Status
+								Property Status
 							</label>
 
 							<select

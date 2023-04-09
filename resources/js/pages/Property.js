@@ -90,6 +90,11 @@ const Property = (props) => {
 									<h6 className="card-text text-secondary">
 										Description: {property.description}
 									</h6>
+									<Link
+										to={`/property/${property.id}`}
+										className="btn btn-primary">
+										View
+									</Link>
 								</div>
 							</div>
 						))}

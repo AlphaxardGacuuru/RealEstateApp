@@ -34,7 +34,7 @@ const PropertyCreate = (props) => {
 	const [price, setPrice] = useState("")
 	const [location, setLocation] = useState("")
 	const [description, setDescription] = useState("")
-	const [status, setStatus] = useState("")
+	const [status, setStatus] = useState("vacant")
 	const [payment, setPayment] = useState("")
 
 	// Get csrf token
@@ -62,7 +62,7 @@ const PropertyCreate = (props) => {
 				.post(`/api/property`, formData)
 				.then((res) => {
 					props.setMessages([res.data])
-					history.push("/")
+					history.push("/property")
 				})
 				.catch((err) => props.getErrors(err))
 		})
@@ -97,13 +97,13 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Name
+								Property Name
 							</label>
 
 							<input
 								type="text"
 								className="form-control"
-								placeholder="Name"
+								placeholder="e.g. Wilson Heights"
 								required={true}
 								onChange={(e) => setName(e.target.value)}
 							/>
@@ -113,13 +113,13 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Price
+								Property Rent
 							</label>
 
 							<input
 								type="number"
 								className="form-control"
-								placeholder="Price"
+								placeholder="e.g. 20000"
 								required={true}
 								onChange={(e) => setPrice(e.target.value)}
 							/>
@@ -129,13 +129,13 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Bedroom
+								No of Bedrooms
 							</label>
 
 							<input
 								type="number"
 								className="form-control"
-								placeholder="Bedroom"
+								placeholder="e.g. 2"
 								required={true}
 								onChange={(e) => setBedroom(e.target.value)}
 							/>
@@ -145,13 +145,13 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Location
+								Property Location
 							</label>
 
 							<input
 								type="text"
 								className="form-control"
-								placeholder="Location"
+								placeholder="e.g. Ngumba Estate"
 								required={true}
 								onChange={(e) => setLocation(e.target.value)}
 							/>
@@ -161,13 +161,13 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Description
+								Property Description
 							</label>
 
 							<input
 								type="text"
 								className="form-control"
-								placeholder="Description"
+								placeholder="e.g. In good condition"
 								required={true}
 								onChange={(e) => setDescription(e.target.value)}
 							/>
@@ -177,7 +177,7 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor="status"
 								className="text-left w-25 mr-2">
-								Status
+								Property Status
 							</label>
 
 							<select

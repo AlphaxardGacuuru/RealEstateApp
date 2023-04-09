@@ -1,7 +1,7 @@
 import React from "react"
 import { Link } from "react-router-dom"
 
-const Index = (props) => {
+const LoginOrRegister = () => {
 	return (
 		<div className="row">
 			<div className="col-sm-4"></div>
@@ -12,14 +12,14 @@ const Index = (props) => {
 
 				<div className="d-flex justify-content-between flex-column mt-5">
 					<Link
-						to={props.auth.name == "Guest" ? "/login-or-register" : "/property-create"}
+						to="/login"
 						className="btn btn-primary btn-lg m-2">
-						I am a Landlord / Caretaker looking for a tenant
+						Login
 					</Link>
 					<Link
-						to="/property"
+						to="/register"
 						className="btn btn-primary btn-lg m-2">
-						I am a Tenant looking for a House
+						Register
 					</Link>
 				</div>
 			</div>
@@ -28,4 +28,4 @@ const Index = (props) => {
 	)
 }
 
-export default Index
+export default LoginOrRegister

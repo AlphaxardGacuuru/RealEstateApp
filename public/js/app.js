@@ -91860,6 +91860,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_PropertyEdit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../pages/PropertyEdit */ "./resources/js/pages/PropertyEdit.js");
 /* harmony import */ var _pages_PropertyCreate__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../pages/PropertyCreate */ "./resources/js/pages/PropertyCreate.js");
 /* harmony import */ var _pages_User_Profile__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../pages/User/Profile */ "./resources/js/pages/User/Profile.js");
+/* harmony import */ var _pages_LoginOrRegister__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../pages/LoginOrRegister */ "./resources/js/pages/LoginOrRegister.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
 function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
@@ -91879,11 +91880,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var App = function App() {
   // Redirect if URL is not secure
   var unsecureUrl = window.location.href.match(/http:/);
   if (unsecureUrl) {
-    window.location.href = "https://www.onesoko.co.ke";
+    // window.location.href = "https://www.onesoko.co.ke"
   }
   var url = "http://localhost:8000";
 
@@ -91953,6 +91955,12 @@ var App = function App() {
     setAuth: setAuth
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["HashRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_TopNav__WEBPACK_IMPORTED_MODULE_3__["default"], STATE), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "/login-or-register",
+    exact: true,
+    render: function render(props) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pages_LoginOrRegister__WEBPACK_IMPORTED_MODULE_13__["default"], STATE);
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "/register",
     exact: true,
     render: function render(props) {
@@ -92185,7 +92193,7 @@ var Index = function Index(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Rentals Market Place"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please click a category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-between flex-column mt-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: props.auth.name == "Guest" ? "/register" : "/property-create",
+    to: props.auth.name == "Guest" ? "/login-or-register" : "/property-create",
     className: "btn btn-primary btn-lg m-2"
   }, "I am a Landlord / Caretaker looking for a tenant"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/property",
@@ -92195,6 +92203,43 @@ var Index = function Index(props) {
   }));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Index);
+
+/***/ }),
+
+/***/ "./resources/js/pages/LoginOrRegister.js":
+/*!***********************************************!*\
+  !*** ./resources/js/pages/LoginOrRegister.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+var LoginOrRegister = function LoginOrRegister() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4 text-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Rentals Market Place"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please click a category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-between flex-column mt-5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/login",
+    className: "btn btn-primary btn-lg m-2"
+  }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/register",
+    className: "btn btn-primary btn-lg m-2"
+  }, "Register"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-sm-4"
+  }));
+};
+/* harmony default export */ __webpack_exports__["default"] = (LoginOrRegister);
 
 /***/ }),
 
@@ -92318,7 +92363,10 @@ var Property = function Property(props) {
       className: "card-text"
     }, "Location: ", property.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
       className: "card-text text-secondary"
-    }, "Description: ", property.description)));
+    }, "Description: ", property.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/property/".concat(property.id),
+      className: "btn btn-primary"
+    }, "View")));
   }))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Property);
@@ -92408,7 +92456,7 @@ var PropertyCreate = function PropertyCreate(props) {
     _useState12 = _slicedToArray(_useState11, 2),
     description = _useState12[0],
     setDescription = _useState12[1];
-  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(""),
+  var _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])("vacant"),
     _useState14 = _slicedToArray(_useState13, 2),
     status = _useState14[0],
     setStatus = _useState14[1];
@@ -92439,7 +92487,7 @@ var PropertyCreate = function PropertyCreate(props) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("sanctum/csrf-cookie").then(function () {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/property", formData).then(function (res) {
         props.setMessages([res.data]);
-        history.push("/");
+        history.push("/property");
       })["catch"](function (err) {
         return props.getErrors(err);
       });
@@ -92479,10 +92527,10 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    placeholder: "Name",
+    placeholder: "e.g. Wilson Heights",
     required: true,
     onChange: function onChange(e) {
       return setName(e.target.value);
@@ -92492,10 +92540,10 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Rent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
-    placeholder: "Price",
+    placeholder: "e.g. 20000",
     required: true,
     onChange: function onChange(e) {
       return setPrice(e.target.value);
@@ -92505,10 +92553,10 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Bedroom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "No of Bedrooms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
-    placeholder: "Bedroom",
+    placeholder: "e.g. 2",
     required: true,
     onChange: function onChange(e) {
       return setBedroom(e.target.value);
@@ -92518,10 +92566,10 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    placeholder: "Location",
+    placeholder: "e.g. Ngumba Estate",
     required: true,
     onChange: function onChange(e) {
       return setLocation(e.target.value);
@@ -92531,10 +92579,10 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
-    placeholder: "Description",
+    placeholder: "e.g. In good condition",
     required: true,
     onChange: function onChange(e) {
       return setDescription(e.target.value);
@@ -92544,7 +92592,7 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "status",
     className: "text-left w-25 mr-2"
-  }, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+  }, "Property Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     name: "status",
     className: "form-control",
     required: true,
@@ -92775,7 +92823,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
     placeholder: property.name,
@@ -92787,7 +92835,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Price"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Rent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
     placeholder: property.price,
@@ -92799,7 +92847,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Bedroom"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "No of Bedrooms"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
     placeholder: property.bedroom,
@@ -92811,7 +92859,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Location"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
     placeholder: property.location,
@@ -92823,7 +92871,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Description"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "text",
     className: "form-control",
     placeholder: property.description,
@@ -92835,7 +92883,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "status",
     className: "text-left w-25 mr-2"
-  }, "Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+  }, "Property Status"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
     name: "status",
     className: "form-control",
     type: "checkbox",
@@ -92996,7 +93044,10 @@ var Profile = function Profile(props) {
       className: "card-text"
     }, "Location: ", property.location), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h6", {
       className: "card-text text-secondary"
-    }, "Description: ", property.description)));
+    }, "Description: ", property.description), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/property/".concat(property.id),
+      className: "btn btn-primary"
+    }, "View")));
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4"
   }));

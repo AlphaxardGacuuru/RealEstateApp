@@ -14,13 +14,14 @@ import PropertyShow from "../pages/PropertyShow"
 import PropertyEdit from "../pages/PropertyEdit"
 import PropertyCreate from "../pages/PropertyCreate"
 import Profile from "../pages/User/Profile"
+import LoginOrRegister from "../pages/LoginOrRegister"
 
 const App = () => {
 	// Redirect if URL is not secure
 	var unsecureUrl = window.location.href.match(/http:/)
 
 	if (unsecureUrl) {
-		window.location.href = "https://www.onesoko.co.ke"
+		// window.location.href = "https://www.onesoko.co.ke"
 	}
 
 	const url = process.env.MIX_APP_URL
@@ -79,6 +80,11 @@ const App = () => {
 			<TopNav {...STATE} />
 			<br />
 
+			<Route
+				path="/login-or-register"
+				exact
+				render={(props) => <LoginOrRegister {...STATE} />}
+			/>
 			<Route
 				path="/register"
 				exact
