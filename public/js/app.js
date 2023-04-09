@@ -91883,9 +91883,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var App = function App() {
   // Redirect if URL is not secure
-  var unsecureUrl = window.location.href.match(/http:/);
+  var unsecureUrl = window.location.href.match(/http:\/\/www.onesoko.com/) || window.location.href.match(/http:\/\/onesoko.com/);
   if (unsecureUrl) {
-    // window.location.href = "https://www.onesoko.co.ke"
+    window.location.href = "https://www.onesoko.co.ke";
   }
   var url = "http://localhost:8000";
 
