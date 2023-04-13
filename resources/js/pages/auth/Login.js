@@ -1,7 +1,7 @@
 /** @format */
 
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Axios from "../../lib/Axios"
 
 const Login = (props) => {
@@ -107,8 +107,13 @@ const Login = (props) => {
 									</div>
 								</div>
 
-								<div className="form-group row mb-0">
-									<div className="col-md-8 offset-md-4">
+								<div className="form-group row mb-0 offset-md-4">
+									<div className="col-md-6">
+										<p>
+											Don't have an account? <Link to="/register">Register</Link>
+										</p>
+									</div>
+									<div className="col-md-6">
 										<button
 											type="submit"
 											className="btn btn-primary">
