@@ -5,6 +5,7 @@ import { useHistory } from "react-router-dom"
 import Axios from "../../lib/Axios"
 
 const Login = (props) => {
+	const [phone, setPhone] = useState("")
 	const [email, setEmail] = useState("")
 	const [password, setPassword] = useState("")
 	const [remember, setRemember] = useState("")
@@ -16,6 +17,7 @@ const Login = (props) => {
 
 		Axios.get("/sanctum/csrf-cookie").then(() => {
 			Axios.post(`/api/login`, {
+				phone: phone,
 				email: email,
 				password: password,
 				remember: remember,
@@ -23,14 +25,18 @@ const Login = (props) => {
 				.then((res) => {
 					props.setMessages(["Logged in"])
 					// Update Logged in user
-					Axios.get(`/api/auth`).then((res) =>
+					Axios.get(`/api/auth`).then((res) => {
 						props.setAuth(res.data)
-					)
-					// Redirect and reload page
-					setTimeout(() => {
-						history.push("/")
-						location.reload()
-					}, 1000)
+						// Redirect and reload page
+						setTimeout(() => {
+							if (res.data.accountType == "landlord") {
+								history.push("/profile")
+							} else {
+								history.push("/property")
+							}
+							location.reload()
+						}, 1000)
+					})
 				})
 				.catch((err) => props.getErrors(err))
 		})
@@ -49,20 +55,16 @@ const Login = (props) => {
 									<label
 										htmlFor="email"
 										className="col-md-4 col-form-label text-md-right">
-										E-Mail Address
+										Login using your Phone Number
 									</label>
 
 									<div className="col-md-6">
 										<input
-											type="email"
+											type="tel"
 											className="form-control"
 											name="johndoe@gmail.com"
-											required={true}
-											autoComplete="email"
 											autoFocus={true}
-											onChange={(e) =>
-												setEmail(e.target.value)
-											}
+											onChange={(e) => setPhone(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -80,10 +82,7 @@ const Login = (props) => {
 											className="form-control"
 											name="password"
 											required={true}
-											autoComplete="current-password"
-											onChange={(e) =>
-												setPassword(e.target.value)
-											}
+											onChange={(e) => setPassword(e.target.value)}
 										/>
 									</div>
 								</div>
@@ -96,9 +95,7 @@ const Login = (props) => {
 												type="checkbox"
 												name="remember"
 												id="remember"
-												onChange={(e) =>
-													setRemember(e.target.value)
-												}
+												onChange={(e) => setRemember(e.target.value)}
 											/>
 
 											<label

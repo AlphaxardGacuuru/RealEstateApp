@@ -136,7 +136,7 @@ const PropertyEdit = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Property Rent
+								Property Rent per Month
 							</label>
 
 							<input

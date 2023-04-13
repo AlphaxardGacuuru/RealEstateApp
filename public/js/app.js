@@ -92190,7 +92190,7 @@ var Index = function Index(props) {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Rentals Market Place"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please click a category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Rentals Market Place"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Please Click a Category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-between flex-column mt-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: props.auth.name == "Guest" ? "/login-or-register" : "/property-create",
@@ -92227,7 +92227,7 @@ var LoginOrRegister = function LoginOrRegister() {
     className: "col-sm-4"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-sm-4 text-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Welcome to"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Rentals Market Place"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Please click a category:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex justify-content-between flex-column mt-5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/login",
@@ -92495,7 +92495,9 @@ var PropertyCreate = function PropertyCreate(props) {
   };
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("center", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h1", {
     className: "text-center"
-  }, "Upload Property"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "Upload Property"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", {
+    className: "text-center"
+  }, "It's FREE for now"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "card m-2 w-75"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_filepond__WEBPACK_IMPORTED_MODULE_3__["FilePond"], {
     name: "filepond-property-images",
@@ -92540,7 +92542,7 @@ var PropertyCreate = function PropertyCreate(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Property Rent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Rent per Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
     placeholder: "e.g. 20000",
@@ -92835,7 +92837,7 @@ var PropertyEdit = function PropertyEdit(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "",
     className: "text-left w-25 mr-2"
-  }, "Property Rent"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+  }, "Property Rent per Month"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     type: "number",
     className: "form-control",
     placeholder: property.price,
@@ -93129,11 +93131,15 @@ var Register = function Register(props) {
     className: "row justify-content-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "text-center"
+  }, "Is this your first time here? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "fs-4"
+  }, "Register"), ", it's free"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-center"
+  }, "Register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "card-header"
-  }, "Register"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "card-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: onSubmit
@@ -93220,10 +93226,14 @@ var Register = function Register(props) {
     onChange: function onChange(e) {
       return setConfirmPassword(e.target.value);
     }
-  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "form-group row mb-0"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "form-group row mb-0 offset-md-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-6 offset-md-4"
+    className: "col-md-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Already have an account? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/login"
+  }, "Login"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn btn-primary"
   }, "Register")))))))));
@@ -93259,21 +93269,26 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Login = function Login(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
     _useState2 = _slicedToArray(_useState, 2),
-    email = _useState2[0],
-    setEmail = _useState2[1];
+    phone = _useState2[0],
+    setPhone = _useState2[1];
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
     _useState4 = _slicedToArray(_useState3, 2),
-    password = _useState4[0],
-    setPassword = _useState4[1];
+    email = _useState4[0],
+    setEmail = _useState4[1];
   var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
     _useState6 = _slicedToArray(_useState5, 2),
-    remember = _useState6[0],
-    setRemember = _useState6[1];
+    password = _useState6[0],
+    setPassword = _useState6[1];
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(""),
+    _useState8 = _slicedToArray(_useState7, 2),
+    remember = _useState8[0],
+    setRemember = _useState8[1];
   var history = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useHistory"])();
   var onSubmit = function onSubmit(e) {
     e.preventDefault();
     _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/sanctum/csrf-cookie").then(function () {
       _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].post("/api/login", {
+        phone: phone,
         email: email,
         password: password,
         remember: remember
@@ -93281,13 +93296,17 @@ var Login = function Login(props) {
         props.setMessages(["Logged in"]);
         // Update Logged in user
         _lib_Axios__WEBPACK_IMPORTED_MODULE_2__["default"].get("/api/auth").then(function (res) {
-          return props.setAuth(res.data);
+          props.setAuth(res.data);
+          // Redirect and reload page
+          setTimeout(function () {
+            if (res.data.accountType == "landlord") {
+              history.push("/profile");
+            } else {
+              history.push("/property");
+            }
+            location.reload();
+          }, 1000);
         });
-        // Redirect and reload page
-        setTimeout(function () {
-          history.push("/");
-          location.reload();
-        }, 1000);
       })["catch"](function (err) {
         return props.getErrors(err);
       });
@@ -93312,17 +93331,15 @@ var Login = function Login(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "email",
     className: "col-md-4 col-form-label text-md-right"
-  }, "E-Mail Address"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Login using your Phone Number"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    type: "email",
+    type: "tel",
     className: "form-control",
     name: "johndoe@gmail.com",
-    required: true,
-    autoComplete: "email",
     autoFocus: true,
     onChange: function onChange(e) {
-      return setEmail(e.target.value);
+      return setPhone(e.target.value);
     }
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group row"
@@ -93336,7 +93353,6 @@ var Login = function Login(props) {
     className: "form-control",
     name: "password",
     required: true,
-    autoComplete: "current-password",
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }

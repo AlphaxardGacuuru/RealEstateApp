@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 import Axios from "../../lib/Axios"
 
 const Register = (props) => {
@@ -36,8 +36,13 @@ const Register = (props) => {
 		<div className="container">
 			<div className="row justify-content-center">
 				<div className="col-md-8">
+					<h5 className="text-center">
+						Is this your first time here? <span className="fs-4">Register</span>
+						, it's free
+					</h5>
+					<h1 className="text-center">Register</h1>
 					<div className="card">
-						<div className="card-header">Register</div>
+						{/* <div className="card-header">Register</div> */}
 
 						<div className="card-body">
 							<form onSubmit={onSubmit}>
@@ -144,9 +149,15 @@ const Register = (props) => {
 										/>
 									</div>
 								</div>
+								<br />
 
-								<div className="form-group row mb-0">
-									<div className="col-md-6 offset-md-4">
+								<div className="form-group row mb-0 offset-md-4">
+									<div className="col-md-6">
+										<p>
+											Already have an account? <Link to="/login">Login</Link>
+										</p>
+									</div>
+									<div className="col-md-6">
 										<button className="btn btn-primary">Register</button>
 									</div>
 								</div>

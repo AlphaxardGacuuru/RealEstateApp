@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Property');
     }
+
+	public function accountType()
+	{
+		return $this->property->count() > 0 ? "landlord" : "tenant";
+	}
 }

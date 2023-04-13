@@ -66,7 +66,14 @@ class UserController extends Controller
     public function auth()
     {
         if (Auth::check()) {
-            return Auth::user();
+            $auth = Auth::user();
+
+			return [
+				"id" => $auth->id,
+				"name" => $auth->name,
+				"email" => $auth->email,
+				"accountType" => $auth->accountType(),
+			];
         }
     }
 }

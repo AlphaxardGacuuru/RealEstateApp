@@ -6,10 +6,6 @@ const LoginOrRegister = () => {
 		<div className="row">
 			<div className="col-sm-4"></div>
 			<div className="col-sm-4 text-center">
-				<h2>Welcome to</h2>
-				<h1>Rentals Market Place</h1>
-				<p>Please click a category:</p>
-
 				<div className="d-flex justify-content-between flex-column mt-5">
 					<Link
 						to="/login"

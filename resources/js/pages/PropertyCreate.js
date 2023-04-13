@@ -71,6 +71,7 @@ const PropertyCreate = (props) => {
 	return (
 		<center>
 			<h1 className="text-center">Upload Property</h1>
+			<h3 className="text-center">It's FREE for now</h3>
 
 			<div className="card m-2 w-75">
 				<div>
@@ -113,7 +114,7 @@ const PropertyCreate = (props) => {
 							<label
 								htmlFor=""
 								className="text-left w-25 mr-2">
-								Property Rent
+								Property Rent per Month
 							</label>
 
 							<input
